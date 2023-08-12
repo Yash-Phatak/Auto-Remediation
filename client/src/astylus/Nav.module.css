@@ -1,0 +1,14 @@
+.navbar{
+    background-image: var(--prim);
+    font-weight: bolder;
+    margin: 0px;
+    display: flex;
+    padding: 20px 100px;
+    font-size: larger;
+    font-family: var(--font1);
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    color: #ffffff;
+}
