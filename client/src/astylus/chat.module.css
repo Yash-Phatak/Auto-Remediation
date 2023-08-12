@@ -1,9 +1,19 @@
 .top{
     background-image: var(--prim);
+    font-family: var(--font1);
+    font-weight: bolder;
+    letter-spacing: 2px;
+    position: fixed;
+    width: 100vw;
+    top: 0px;
     padding: 18px;
     text-align: center;
     color: aliceblue;
     font-size: larger;
+}
+
+.chatArea{
+    margin: 70px 0px;
 }
 
 .bdy{
@@ -27,7 +37,7 @@
     position: fixed;
     bottom: 0px;
     padding: 15px;
-    display: flex;
+    display: flex;  
     flex: 1;
     justify-content: center;
     align-items: center;
@@ -68,6 +78,8 @@ input{
     letter-spacing: 2px;
 }
 
-@media screen and (min-device-width : 650px) {
-
+@media screen and (max-device-width : 400px) {
+    .btn{
+        margin: 0px 15px;
+    }
 }

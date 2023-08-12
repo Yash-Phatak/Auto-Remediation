@@ -5,8 +5,9 @@ import nc from '../astylus/Nav.module.css'
 function Navbar() {
   return (
     <div className={nc.navbar}>
-      <Link className='' to='/'>Krypto Bot</Link>
-      <Link className='' to='/chat'>Try Now!</Link>
+      <i class="fa-solid fa-robot fa-xl"></i>
+      <Link to='/'>Krypto Bot</Link>
+      <Link to='/chat'>Try Now!</Link>
     </div>
   )
 }
