@@ -1,5 +1,3 @@
-
-
 .bdy{
     display: flex;
     flex-direction: row;
@@ -17,7 +15,6 @@
     min-width: 350px;
     margin: auto;
     max-width: 600px;
-    margin-bottom: 98px;
 }
 
 .h{

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import css from '../astylus/chat.module.css'
 
 function Chat() {
@@ -6,6 +6,12 @@ function Chat() {
     const [, updateState] = React.useState();  //force render
     const forceUpdate = React.useCallback(() => updateState({}), []);   //force render
     var arr = useRef([]);
+    const mssgend=useRef();
+
+    useEffect(()=>{               //to automatically scroll down after an input is sent
+        mssgend.current?.scrollIntoView({behavior: "smooth"})
+    }, [input])
+
     function changeInput(e) {
         setInput(e.target.value);
     }
@@ -26,7 +32,7 @@ function Chat() {
                 <h1><i class="fa-solid fa-robot fa-shake fa-lg"></i><span className='ml-2'>Krypto Bot</span></h1>
             </div>
 
-            <div className={css.chatArea}>
+            <div className={css.chatArea}  >
             {
                 arr.current.map((data, i) => {
                     return (
@@ -36,6 +42,7 @@ function Chat() {
                     )
                 })
             }
+            <div ref={mssgend}></div>
             </div>
 
             <div >
