@@ -5,7 +5,7 @@ function Chat() {
     const [input, setInput] = useState("");
     const [, updateState] = React.useState();  //force render
     const forceUpdate = React.useCallback(() => updateState({}), []);   //force render
-    var arr = useRef([]);
+    var arr = useRef([]);    //try to make this useState;
     const mssgend=useRef();
 
     useEffect(()=>{               //to automatically scroll down after an input is sent
