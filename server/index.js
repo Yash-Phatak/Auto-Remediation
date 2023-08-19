@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express=require("express");
 const cors = require("cors");
 const Mssg = require("./configfb");
@@ -13,6 +14,10 @@ app.use(cors(corsOptions));
 
 app.get('/', (req,res)=>{
     res.send("Working");
+})
+
+app.post('/chat', (req,res)=>{
+    
 })
 
 app.listen(5000, ()=>{

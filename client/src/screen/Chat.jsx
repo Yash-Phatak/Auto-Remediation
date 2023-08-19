@@ -18,6 +18,7 @@ function Chat() {
         e.preventDefault();
         if(input !==""){
             arr.push(input);
+            
             setInput("");
         }
     }
