@@ -2,10 +2,9 @@ require('dotenv').config()
 const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
 const { getFirestore, Timestamp, FieldValue, Filter } = require('firebase-admin/firestore');
 
-const serviceAccount = require('./firebaseprivatekey.json');
 
 initializeApp({
-  credential: cert(serviceAccount)
+  credential: cert(JSON.parse(process.env.FIREBASE_KEY))
 });
 
 const db = getFirestore();
