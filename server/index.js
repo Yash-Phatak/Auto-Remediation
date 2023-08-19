@@ -8,7 +8,7 @@ const app=express();
 app.use(express.json());
 
 const corsOptions = {
-    origin: "http://localhost:3000/" // frontend URI (ReactJS)
+    origin: "http://localhost:3000" // frontend URI (ReactJS)
 }
 app.use(cors(corsOptions));
 
@@ -16,7 +16,14 @@ app.get('/', (req,res)=>{
     res.send("Working");
 })
 
-app.post('/chat', (req,res)=>{
+app.post('/chat', async (req,res)=>{
+    const chat = req.body;
+    try{
+        await Mssg.add(chat)
+        .then(res.send({success:"true"}));
+    }catch(err){
+        console.log(err);
+    }
     
 })
 

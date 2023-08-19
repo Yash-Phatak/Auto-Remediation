@@ -14,11 +14,19 @@ function Chat() {
         setInput(e.target.value);
     }
 
-    function send(e) {
+    const send= async (e)=> {
         e.preventDefault();
         if(input !==""){
             arr.push(input);
-            
+            const res=await fetch("http://localhost:5000/chat", {
+                method: "POST",
+                headers:{
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({mssg: input})
+            });
+            const json= await res.json();
+            console.log(json);
             setInput("");
         }
     }
@@ -46,7 +54,7 @@ function Chat() {
             <div >
                 <form onSubmit={send} className={css.inp}>
                     <input onChange={changeInput} value={input} placeholder='How can we help you today?'></input>
-                    <button className={css.btn} type='submit'> <i class="fa-solid fa-paper-plane m-2"></i></button>
+                    <button className={css.btn} type='submit'> <i className="fa-solid fa-paper-plane m-2"></i></button>
                 </form>
             </div>
         </div>
