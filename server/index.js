@@ -1,7 +1,10 @@
 const express=require("express");
 const cors = require("cors");
+const Mssg = require("./configfb");
+
 
 const app=express();
+app.use(express.json());
 
 const corsOptions = {
     origin: "http://localhost:3000/" // frontend URI (ReactJS)

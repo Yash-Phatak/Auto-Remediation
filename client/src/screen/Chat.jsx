@@ -3,9 +3,7 @@ import css from '../astylus/chat.module.css'
 
 function Chat() {
     const [input, setInput] = useState("");
-    const [, updateState] = React.useState();  //force render
-    const forceUpdate = React.useCallback(() => updateState({}), []);   //force render
-    var arr = useRef([]);    //try to make this useState;
+    const[arr] = useState([]);
     const mssgend=useRef();
 
     useEffect(()=>{               //to automatically scroll down after an input is sent
@@ -19,8 +17,7 @@ function Chat() {
     function send(e) {
         e.preventDefault();
         if(input !==""){
-            forceUpdate();
-            arr.current.push(input);
+            arr.push(input);
             setInput("");
         }
     }
@@ -34,7 +31,7 @@ function Chat() {
 
             <div className={css.chatArea}  >
             {
-                arr.current.map((data, i) => {
+                arr.map((data, i) => {
                     return (
                         <div key={i} className={css.mssg}>
                             <p>{data}</p>
