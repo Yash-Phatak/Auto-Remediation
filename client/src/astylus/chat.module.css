@@ -1,9 +1,18 @@
+.bdy{
+    display: grid;
+    grid-template-rows: 9vh 81vh 10vh;
+    grid-template-columns: 14vw 86vw;
+    grid-template-areas: "top1 top1"
+        "sidebar chatarea"
+        "foot foot";
+}
+
 .top{
-    background-image: var(--prim);
+    grid-area: top1;
+    background-color: var(--dcdark);
     font-family: var(--font1);
     font-weight: bolder;
     letter-spacing: 2px;
-    position: fixed;
     width: 100vw;
     top: 0px;
     padding: 18px;
@@ -12,15 +21,27 @@
     font-size: larger;
 }
 
+.sidebar{
+    grid-area: sidebar;
+    display: flex;
+    gap: 20px;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    width: auto;
+    height:auto;
+    background-color: var(--dcdark);
+}
+
 .chatArea{
-    margin: 70px 0px;
+    grid-area: chatarea;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-}
-
-.bdy{
-    margin-bottom: 75px;
+    overflow-y: scroll;
+    background-color: var(--dclight);
 }
 
 .mssg{
@@ -29,25 +50,26 @@
     background-image: var(--prim);
     margin: 5px 18px;
     padding: 10px 15px;
-    border-radius: 10px;
+    border-radius: 15px 15px 0px 15px;
     width: fit-content;
     align-items: flex-end;
 }
 
+.foot{
+    grid-area: foot;
+}
+
 .inp{
     font-family: var(--font1);
-    margin-bottom: 100vh-73px;
-    background-image: var(--prim);
-    position: fixed;
-    bottom: 0px;
+    background-color: var(--dcdark);
     padding: 15px;
-    display: flex;  
+    display: flex;
     flex: 1;
     justify-content: center;
     align-items: center;
     color: var(--prim);
     font-size: large;
-    width: 100vw;
+    height: 10vh;
 }
 
 label{
@@ -55,7 +77,7 @@ label{
     font-size: 120%;
 }
 
-input{
+.inpu{
     padding: 8px;
     border-radius: 10px;
     min-width: 250px;
