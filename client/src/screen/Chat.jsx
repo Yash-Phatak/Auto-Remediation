@@ -9,6 +9,9 @@ function Chat() {
     const mssgend = useRef();
     const [slide, setSlide] = useState(false);
     const [activ, setActiv] = useState({one: true, two:false, three:false});
+    const name=localStorage.getItem('name');
+    const gen=localStorage.getItem('gen');
+    console.log(gen)
 
     useEffect(() => {               //to automatically scroll down after an input is sent
         mssgend.current?.scrollIntoView({ behavior: "smooth" })
@@ -71,8 +74,8 @@ function Chat() {
             </div>
 
             <div className={`${slide ? "top-[-300vw]" : ""} ${css.sidebar}`}>
-                <PixelArtCard random={true} size={200} tags={['human-female','human-male']}/>
-                <h1 className="mb-12 text-xl">Hello, Sam!</h1>
+                <PixelArtCard hover={false} random={true} size={200} tags={[(gen==="male")? "human-male":"human-female"] }/>
+                <h1 className="mb-12 text-xl">Hello, {name}!</h1>
 
                 <button onClick={()=> {setActiv({one:true, two:false, three:false}); setSlide(!slide)}} className={`h-[40px] w-[120px] ${css.btn}`} style={{backgroundImage: activ.one ? "var(--prim)" : ""}}>
                     FAQ</button>

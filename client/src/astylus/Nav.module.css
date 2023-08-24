@@ -3,7 +3,6 @@
     font-weight: bolder;
     margin: 0px;
     display: flex;
-    position: sticky;
     padding: 20px 100px;
     font-size: larger;
     font-family: var(--font1);

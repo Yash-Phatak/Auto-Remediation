@@ -11,6 +11,10 @@
     --font2: 'Poppins', sans-serif;
 }
 
+iframe{
+    display: none;
+}
+
 body{
     position: relative;
 }
