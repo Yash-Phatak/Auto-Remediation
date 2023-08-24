@@ -3,11 +3,13 @@
     font-weight: bolder;
     margin: 0px;
     display: flex;
+    position: sticky;
     padding: 20px 100px;
     font-size: larger;
     font-family: var(--font1);
     flex: 1;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 15px;
     align-items: center;
     flex-wrap: wrap;
     color: #ffffff;

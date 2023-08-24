@@ -7,6 +7,12 @@
         "foot foot";
 }
 
+.slide{
+    display: none;
+}
+
+
+
 .top{
     grid-area: top1;
     background-color: var(--dcdark);
@@ -35,6 +41,27 @@
     background-color: var(--dcdark);
 }
 
+@media (max-width: 950px) {
+    .slide{
+        position: absolute;
+        display: block;
+        top: 32px;
+        left: 10px;
+        z-index: 5;
+    }
+    .sidebar{
+        position: absolute;
+        height: 100vh !important;
+        width: 100vw !important;
+        z-index: 2;
+    }
+    .bdy{
+        grid-template-areas: "top1 top1"
+        "chatarea chatarea"
+        "foot foot";
+    }
+}
+
 .chatArea{
     grid-area: chatarea;
     display: flex;
@@ -44,15 +71,26 @@
     background-color: var(--dclight);
 }
 
-.mssg{
+.mssg1{
     font-family: var(--font2);
     color: var(--sec);
     background-image: var(--prim);
     margin: 5px 18px;
     padding: 10px 15px;
     border-radius: 15px 15px 0px 15px;
-    width: fit-content;
+    max-width: 40vw;
     align-items: flex-end;
+}
+
+.mssg2{
+    font-family: var(--font2);
+    color: var(--sec);
+    background-color: rgb(21, 21, 21);
+    margin: 5px 18px;
+    padding: 10px 15px;
+    border-radius: 15px 15px 15px 0px;
+    max-width: 40vw;
+    align-self: flex-start;
 }
 
 .foot{
@@ -85,13 +123,10 @@ label{
 }
 
 .btn{
-    background-image: var(--prim);
     color: var(--sec);
     border-width: 2px;
     border-color: var(--sec);
     margin: 0px 30px;
-    height: 40px;
-    width: 130px;
     border-radius: 30px;
     letter-spacing: 1px;
     transition: all ease 0.3s;

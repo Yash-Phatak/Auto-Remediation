@@ -7,7 +7,6 @@ function Navbar() {
     <div className={nc.navbar}>
       <i className="fa-solid fa-robot fa-xl"></i>
       <Link to='/'>Krypto Bot</Link>
-      <Link to='/chat'>Try Now!</Link>
     </div>
   )
 }

@@ -14,6 +14,7 @@ function Fp() {
                 </div>
                 <div className={fpc.img}><img src={img} alt='err' ></img></div>
             </div>
+            
         </>
     )
 }
