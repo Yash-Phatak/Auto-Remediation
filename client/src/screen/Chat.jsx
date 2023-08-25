@@ -68,16 +68,16 @@ function Chat() {
 
     return (
         <div className={css.bdy}>
-            <button onClick={()=>setSlide(!slide)}><i className={`fa-solid  ${slide ? "" : "rotate-180"} fa-circle-arrow-right fa-2xl ${css.slide}`} style={{color: "#f7e22b"}}></i></button>
+            <button onClick={()=>setSlide(!slide)}><i className={`fa-solid  ${slide ? "" : "rotate-180"} transition ease-out delay-300 fa-circle-arrow-right fa-2xl ${css.slide}`} style={{color: "#f7e22b"}}></i></button>
             <div className={css.top}>
                 <h1><i class="fa-solid fa-robot fa-shake fa-lg"></i><span className='ml-2'>Krypto Bot</span></h1>
             </div>
 
-            <div className={`${slide ? "top-[-300vw]" : ""} ${css.sidebar}`}>
+            <div className={`${slide ? "max-lg:translate-x-[-300vw]" : ""} ${css.sidebar} transition ease-out delay-300`}>
                 <PixelArtCard hover={false} random={true} size={200} tags={[(gen==="male")? "human-male":"human-female"] }/>
                 <h1 className="mb-12 text-xl">Hello, {name}!</h1>
 
-                <button onClick={()=> {setActiv({one:true, two:false, three:false}); setSlide(!slide)}} className={`h-[40px] w-[120px] ${css.btn}`} style={{backgroundImage: activ.one ? "var(--prim)" : ""}}>
+                <button onClick={()=> {setActiv({one:true, two:false, three:false}); setSlide(!slide)}} className={`h-[40px] w-[120px]  ${css.btn}`} style={{backgroundImage: activ.one ? "var(--prim)" : ""}}>
                     FAQ</button>
                 <button onClick={()=> {setActiv({one:false, two:true, three:false}); setSlide(!slide)}} className={`h-[40px] w-[120px] ${css.btn}`} style={{backgroundImage: activ.two ? "var(--prim)" : ""}}>
                     Analytics</button>
