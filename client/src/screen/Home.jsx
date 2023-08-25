@@ -20,7 +20,7 @@ function Home() {
     <div>
       {open && <Modal setOpenModal={setOpen} setDet={setDet}/>}
       <Navbar />
-      <Fp />
+      <Fp open={open}/>
     </div>
   )
 }

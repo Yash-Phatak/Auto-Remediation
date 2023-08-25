@@ -2,7 +2,7 @@ import React from 'react'
 import '../astylus/modal.css'
 import { useState } from 'react';
 
-function Modal({ setOpenModal, setDet }) {
+function Modal({ setOpenModal }) {
   const [val, setVal] = useState("");
   const [gen, setGen] = useState("male");
   return (
@@ -12,16 +12,16 @@ function Modal({ setOpenModal, setDet }) {
         <form onSubmit={() => { setOpenModal(false); localStorage.setItem('name', val);  localStorage.setItem('gen', gen)}} className='flex flex-col justify-center items-center'>
           <div className='pb-4'>
             <label for="name">Name:</label>
-            <input type="text" name="name" placeholder="Your Name" value={val} onChange={(e) => { setVal(e.target.value) }} className='h-8 px-2 border border-blue-300'/>
+            <input type="text" name="name" placeholder="Your Name" value={val} onChange={(e) => { setVal(e.target.value) }} className='h-8 px-2 border border-blue-300 rounded-md'/>
           </div>
           <div className='pb-4 self-start'>
             <label>Gender: </label>
-            <select name="gend" value={gen} onChange={(e) => { setGen(e.target.value) }} className='rounded-sm w-32 h-8 pl-2 border border-blue-300'>
+            <select name="gend" value={gen} onChange={(e) => { setGen(e.target.value) }} className='rounded-md w-32 h-8 pl-2 border border-blue-300'>
               <option value="male">Male</option>
               <option value="female">Female</option>
             </select>
           </div>
-          <button className='bg-blue-500 rounded-md text-lg w-28 h-8 '>
+          <button className='bg-blue-500 rounded-md text-lg w-28 h-8 mt-3 '>
             Submit
           </button>
         </form>

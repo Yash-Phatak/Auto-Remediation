@@ -75,7 +75,7 @@ function Chat() {
 
             <div className={`${slide ? "max-lg:translate-x-[-300vw]" : ""} ${css.sidebar} transition ease-out delay-300`}>
                 <PixelArtCard hover={false} random={true} size={200} tags={[(gen==="male")? "human-male":"human-female"] }/>
-                <h1 className="mb-12 text-xl">Hello, {name}!</h1>
+                <h1 className="mb-12 text-xl mt-2">Hello, <span className='text-yellow-400 font-bold'>{name}</span>!</h1>
 
                 <button onClick={()=> {setActiv({one:true, two:false, three:false}); setSlide(!slide)}} className={`h-[40px] w-[120px]  ${css.btn}`} style={{backgroundImage: activ.one ? "var(--prim)" : ""}}>
                     FAQ</button>
