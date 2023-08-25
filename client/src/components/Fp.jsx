@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import fpc from '../astylus/fp.module.css'
 import Fcard from './Fcard'
+import Dev from './Dev'
 import i1 from '../img/b2.png'
 import i4 from '../img/b4.png'
 import i3 from '../img/b3.png'
@@ -30,6 +31,12 @@ function Fp({ open }) {
           <Fcard img={i1} head={"Lorem Ipsum"} detail={"Velit anim anim voluptate incididunt sint sint est. Laborum qui sint ullamco non labore. Et nulla eu aute aliqua ea deserunt irure voluptate adipisicing. Amet qui labore velit culpa."} />
           <Fcard img={i4} head={"Lorem Ipsum"} detail={"Velit anim anim voluptate incididunt sint sint est. Laborum qui sint ullamco non labore. Et nulla eu aute aliqua ea deserunt irure voluptate adipisicing. Amet qui labore velit culpa."} />
           <Fcard img={i3} head={"Lorem Ipsum"} detail={"Velit anim anim voluptate incididunt sint sint est. Laborum qui sint ullamco non labore. Et nulla eu aute aliqua ea deserunt irure voluptate adipisicing. Amet qui labore velit culpa."} />
+        </div>
+
+        <div className='text-yellow-400 text-5xl font-semibold mt-24' style={{"fontFamily":"var(--font1"}}>Meet our Devs!</div>
+        <div className='flex gap-8 mt-20 mb-12 justify-center items-center max-md:flex-col'>
+          <Dev nam={"Mitansh Patel"}/>
+          <Dev nam={"Yash Phatak"}/>
         </div>
 
       </div>
