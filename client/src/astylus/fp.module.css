@@ -4,7 +4,6 @@
     justify-content: space-between;
     flex: 1;
     flex-wrap: wrap;
-    padding-top: 60px;
     text-align: center;
     color: #ffffff;
     background-image: var(--prim);
@@ -12,10 +11,6 @@
 }
 
 @media (max-width: 1196px){
-    .bdy{
-        padding-top: 0px;
-        text-align: center;   
-    }
     .h{
         font-size: 60px;
     }
@@ -25,23 +20,17 @@
     
 }
 
-.img{
-    min-width: 350px;
-    margin: auto;
-    max-width: 600px;
-}
-
 .h{
     font-size: 75px;
     font-weight: bolder;
     letter-spacing: 2px;
-    margin-bottom: 3px;
 }
 
 .heading{
     font-family: var(--font1);
-    margin: 70px auto;
+    margin: 30px auto 0px auto;
     width: auto;
+    z-index: 2;
     padding: 10px;
 }
 

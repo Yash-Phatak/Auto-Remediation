@@ -16,7 +16,9 @@ function Fp({ open }) {
             </Link>
           </div>
         </div>
-        <div className={fpc.img}><img src={img} alt='err' ></img></div>
+        <div className={`h-[80vh]`}>
+          
+        </div>
       </div>
 
     </>

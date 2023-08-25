@@ -1,13 +1,17 @@
 .navbar{
-    background-image: var(--prim);
+    background-color: black;
     font-weight: bolder;
-    margin: 0px;
     display: flex;
+    position: sticky;
+    top:0px;
+    z-index: 1000;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
     padding: 20px 100px;
+    width: 100vw;
     font-size: larger;
     font-family: var(--font1);
     flex: 1;
-    justify-content: center;
     gap: 15px;
     align-items: center;
     flex-wrap: wrap;

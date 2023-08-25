@@ -90,7 +90,7 @@ function Chat() {
                     arr.map((data, i) => {
                         return (
                             <>
-                            <div key={i} className={`${css.mssg1}`} style={{backgroundImage:"var(--prim)"}}>
+                            <div key={i} className={`${css.mssg1}`}>
                                 <p>{data}</p>
                             </div>
                             <div className={`${css.mssg2}`}><p>{recv}</p></div>
