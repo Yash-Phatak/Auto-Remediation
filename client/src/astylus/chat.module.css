@@ -101,6 +101,10 @@ label{
     min-width: 250px;
     width:800px;
 }
+input:focus {
+    outline: none;
+    border: 3px solid #7e1faa;
+}
 
 .btn{
     color: var(--sec);
