@@ -15,12 +15,13 @@ app.use(cors(corsOptions));
 app.get('/', (req,res)=>{
     res.send("Working");
 })
-
 app.post('/chat', async (req,res)=>{
     const chat = req.body;
+    var good = "mit"+Math.random()
     try{
+        
         await Mssg.add(chat)
-        .then(res.send({success:"true"}));
+        .then(res.send({"message":good}));
     }catch(err){
         console.log(err);
     }
