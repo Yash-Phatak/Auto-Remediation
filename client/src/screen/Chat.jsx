@@ -24,41 +24,43 @@ function Chat() {
         e.preventDefault();
         if (input.trim() !== "") {
             setArr([...arr, input])
-            if (activ.one) {
-                const res = await fetch("http://localhost:5000/chat", {
-                    method: "POST",
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ message: input })
-                });
-                var temp = await res.json();
-                setRecv([...recv, temp.message]);
+            // if (activ.one) {
+            //     const res = await fetch("http://localhost:5000/chat", {
+            //         method: "POST",
+            //         headers: {
+            //             'Content-Type': 'application/json'
+            //         },
+            //         body: JSON.stringify({ message: input })
+            //     });
+            //     var temp = await res.json();
+            //     console.log(temp.message);
+            //     setRecv([...recv, temp.message]);
+            //     console.log(recv);
                 
-            }
-            else if (activ.two) {
-                const res = await fetch("http://localhost:5000/chat", {
-                    method: "POST",
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ message: input })
-                });
-                var temp = await res.json();
+            // }
+            // else if (activ.two) {
+            //     const res = await fetch("http://localhost:5000/chat", {
+            //         method: "POST",
+            //         headers: {
+            //             'Content-Type': 'application/json'
+            //         },
+            //         body: JSON.stringify({ message: input })
+            //     });
+            //     var temp = await res.json();
 
-                setRecv([...recv, temp.message]);
-            }
-            else {
-                const res = await fetch("http://localhost:5000/chat", {
-                    method: "POST",
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ message: input })
-                });
-                var temp = await res.json();
-                setRecv([...recv, temp.message]);
-            }
+            //     setRecv([...recv, temp.message]);
+            // }
+            // else {
+            //     const res = await fetch("http://localhost:5000/chat", {
+            //         method: "POST",
+            //         headers: {
+            //             'Content-Type': 'application/json'
+            //         },
+            //         body: JSON.stringify({ message: input })
+            //     });
+            //     var temp = await res.json();
+            //     setRecv([...recv, temp.message]);
+            // }
             //setArr([...arr, recv])
             setInput("");
         }

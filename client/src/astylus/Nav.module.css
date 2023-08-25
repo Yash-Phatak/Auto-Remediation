@@ -5,10 +5,6 @@
     position: sticky;
     top:0px;
     z-index: 1000;
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
-    padding: 20px 100px;
-    width: 100vw;
     font-size: larger;
     font-family: var(--font1);
     flex: 1;
