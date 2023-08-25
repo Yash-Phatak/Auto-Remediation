@@ -93,7 +93,7 @@ function Chat() {
                             <div key={i} className={`${css.mssg1}`}>
                                 <p>{data}</p>
                             </div>
-                            <div className={`${css.mssg2}`}><p>{recv}</p></div>
+                            <div className={`${css.mssg2}`} ><p>{recv}</p></div>
                             </>
                         )
                     })
