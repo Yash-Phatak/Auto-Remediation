@@ -141,7 +141,7 @@ function Chat() {
 
       <div className={css.chatArea}  >
         {/* FAQ */}
-        {activ.one && (<div className={`${css.mssg2} max-sm:text-sm max-sm:min-w-[300px]`}><p>Hello, I am Crypton! </p><p>I am a one-stop solution to all your Cryptocurrency related doubts. How can I help you?</p></div>)}
+        {activ.one && (<div className={`${css.mssg2} max-sm:text-sm max-sm:min-w-[280px]`}><p>Hello, I am Crypton! </p><p>I am a one-stop solution to all your Cryptocurrency related doubts. How can I help you?</p></div>)}
         {activ.two && (<div className={`${css.mssg2} max-sm:text-sm max-sm:min-w-[300px]`}><p>Hello, I am Crypton! </p><p>I am a one-stop solution to all your Cryptocurrency related doubts. How can I help you?</p></div>)}
         {activ.three && (<div className={`${css.mssg2} max-sm:text-sm max-sm:min-w-[300px]`}><p>Hello, I am Crypton! </p><p>I am a one-stop solution to all your Cryptocurrency related doubts. How can I help you?</p></div>)}
         {activ.four && (<div className={`${css.mssg2} max-sm:text-sm max-sm:min-w-[300px]`}><p>Hello, I am Crypton! </p><p>I am a one-stop solution to all your Cryptocurrency related doubts. How can I help you?</p></div>)}
@@ -152,7 +152,7 @@ function Chat() {
                 <div key={i} className={`${css.mssg1}`}>
                   <p>{data}</p>
                 </div>
-                {(i >= recv.length) ? "" : (<div className={`${css.mssg2} max-sm:text-sm max-sm:min-w-[300px]`} id={i}><p>{recv[i]}</p></div>)}
+                {(i >= recv.length) ? "" : (<div className={`${css.mssg2} max-sm:text-sm max-sm:min-w-[280px]`} id={i}><p>{recv[i]}</p></div>)}
               </>
             )
           })))
@@ -167,7 +167,7 @@ function Chat() {
                 <div key={i} className={`${css.mssg1}`}>
                   <p>{data}</p>
                 </div>
-                {((i * 4) >= (price.length+1)) ? "" : (<div className={`${css.mssg2} max-sm:text-sm max-sm:min-w-[300px]`} id={i}>
+                {((i * 4) >= (price.length+1)) ? "" : (<div className={`${css.mssg2} max-sm:text-sm max-sm:min-w-[280px]`} id={i}>
                   <p className='text-yellow-500 text-xl'>{`For ${data}`}</p>
                   <p className='mb-2'>Currently the data prices are :</p>
                   <p>{`All time high :  $${price[j]}`}</p>
@@ -216,7 +216,7 @@ function Chat() {
           {load && (<h1 className='text-3xl text-white font-bold'>Loading....</h1>)}
 
           {!load && activ.one && (<input className={css.inpu} onChange={changeInput} value={input} placeholder='How can we help you today?'></input>)}
-          {!load && activ.two && (<div style={{ "backgroundColor": "var(--dclight)" }} className='p-2 rounded-lg flex gap-4'><p className='inline text-white'>Choose a crypto: </p>
+          {!load && activ.two && (<div style={{ "backgroundColor": "var(--dclight)" }} className='p-2 rounded-lg flex gap-4 max-sm:flex-col max-sm:text-sm max-sm:min-w-[200px]'><p className='inline text-white'>Choose a crypto: </p>
             <select onChange={changeInput} style={{ "backgroundColor": "var(--dclight)"}} className='rounded-lg px-3 text-white border-none'>
               <option>Select</option>
               <option>Bitcoin</option>
@@ -227,7 +227,7 @@ function Chat() {
               <option>Bitcoin</option>
             </select>
           </div>)}
-          {!load && activ.three && (<div style={{ "backgroundColor": "var(--dclight)" }} className='p-2 rounded-lg flex gap-4'><p className='inline text-white'>Which crypto to analyize: </p>
+          {!load && activ.three && (<div style={{ "backgroundColor": "var(--dclight)" }} className='p-2 rounded-lg flex gap-4 max-sm:flex-col max-sm:text-sm max-sm:min-w-[200px]'><p className='inline text-white'>Which crypto to analyize: </p>
             <select onChange={changeInput} style={{ "backgroundColor": "var(--dclight)"}} className='rounded-lg px-3 text-white border-none'>
               <option>Select</option>
               <option>Bitcoin</option>
