@@ -187,7 +187,7 @@ function Chat() {
                 <div key={i} className={`${css.mssg1}`}>
                   <p>{data}</p>
                 </div>
-                {(i >= img.length) ? "" : (<div className='mx-[5px] my-[18px] p-2 bg-black text-white rounded-lg'><img src={img[i]} alt='plot here' className='max-h-[500px] max-w-[600px] max-sm:max-w-[340px] self-start' /></div>)}
+                {(i >= img.length) ? "" : (<div className='mx-[8px] my-[18px] p-2 bg-black text-white rounded-lg self-start'><img src={img[i]} alt='plot here' className='max-h-[500px] max-w-[600px] max-sm:max-w-[340px]' /></div>)}
               </>
             )
           })))
@@ -218,6 +218,7 @@ function Chat() {
           {!load && activ.one && (<input className={css.inpu} onChange={changeInput} value={input} placeholder='How can we help you today?'></input>)}
           {!load && activ.two && (<div style={{ "backgroundColor": "var(--dclight)" }} className='p-2 rounded-lg flex gap-4'><p className='inline text-white'>Choose a crypto: </p>
             <select onChange={changeInput} style={{ "backgroundColor": "var(--dclight)"}} className='rounded-lg px-3 text-white border-none'>
+              <option>Select</option>
               <option>Bitcoin</option>
               <option>Ethereum</option>
               <option>Dogecoin</option>
@@ -226,7 +227,17 @@ function Chat() {
               <option>Bitcoin</option>
             </select>
           </div>)}
-          {!load && activ.three && (<input className={css.inpu} onChange={changeInput} value={input} placeholder='How can we help you today?'></input>)}
+          {!load && activ.three && (<div style={{ "backgroundColor": "var(--dclight)" }} className='p-2 rounded-lg flex gap-4'><p className='inline text-white'>Which crypto to analyize: </p>
+            <select onChange={changeInput} style={{ "backgroundColor": "var(--dclight)"}} className='rounded-lg px-3 text-white border-none'>
+              <option>Select</option>
+              <option>Bitcoin</option>
+              <option>Ethereum</option>
+              <option>Dogecoin</option>
+              <option>Litecoin</option>
+              <option>Tron</option>
+              <option>Bitcoin</option>
+            </select>
+          </div>)}
           {!load && activ.four && (<input className={css.inpu} onChange={changeInput} value={input} placeholder='How can we help you today?'></input>)}
 
           <button className={`h-[40px] w-[130px] ${css.btn}`} style={{ backgroundImage: "var(--prim)" }} type='submit'> <i className="fa-solid fa-paper-plane m-2"></i></button>
