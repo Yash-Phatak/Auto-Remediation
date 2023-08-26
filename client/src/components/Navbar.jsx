@@ -12,7 +12,7 @@ function Navbar() {
       </div>
       <div className='ml-auto max-sm:mx-auto'>
         <HashLink smooth to="#feat" className='mr-2'>Features</HashLink>
-        <HashLink smooth to="#feat" className='m-2'>About Us</HashLink>
+        <HashLink smooth to="#dev" className='m-2'>About Us</HashLink>
       </div>
     </div>
   )
