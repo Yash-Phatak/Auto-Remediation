@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import fpc from '../astylus/fp.module.css'
 import Fcard from './Fcard'
@@ -9,9 +9,14 @@ import i3 from '../img/b3.png'
 import img from '../img/boy.png'
 import mit from '../img/Mit.jpg'
 import yash from '../img/yash.jpg'
+import 'aos/dist/aos.css'
+import AOS from "aos"
 
 
 function Fp({ open }) {
+  useEffect(()=>{
+    AOS.init({duration:2000})
+  },[])
   return (
     <>
       <div className={`${fpc.bdy} max-w-[100%]`} id="top">
@@ -29,19 +34,19 @@ function Fp({ open }) {
           </div>
           <img src={img} alt="main" className='max-w-[450px] max-h-[450px] p-2 m-auto max-md:max-w-[350px] max-sm:max-w-[300px] max-sm:mt-10' />
         </div>
-
-        <div className='flex justify-around items-center flex-1 mt-24 max-lg:flex-col gap-5 lg:mx-10' id="feat">
+        <div id="feat"></div>
+        <div className='flex justify-around items-center flex-1 mt-24 max-lg:flex-col gap-5 lg:mx-10'>
           <Fcard img={i1} head={"Crypton"} detail={"🤖 Unravel the answers you seek! Engage with Crypton, a digital companion designed to swiftly address your queries. No more hunting for information – just ask and enlighten yourself effortlessly. "} />
           <Fcard img={i4} head={"Data Dynamo"} detail={"📊 Dive into the world of Data Dynamo! From insightful trends to comprehensive analysis, empower your decision-making with real-time data analytics. Unleash the potential of information and transform it into actionable wisdom. "} />
           <Fcard img={i3} head={"Market Pulsebeat"} detail={"💹Stay ahead with Market Pulsebeat! Instantly access real-time prices and trends for your essential assets. Seize the rhythm of the crypto market at your fingertips."} />
         </div>
 
-        <div  className='text-yellow-400 text-5xl font-semibold mt-24 max-sm:text-4xl tracking-wider' style={{ "fontFamily": "var(--font1" }}>Meet the Devs!</div>
+        <div  className='text-yellow-400 text-5xl font-semibold mt-16 max-sm:text-4xl tracking-wider' style={{ "fontFamily": "var(--font1" }}>Meet the Devs!</div>
         
         <div id="dev" className='relative flex gap-8 mt-20 mb-12 justify-around items-center max-lg:flex-col pb-8'>
           <div className='bg-purple-700 rounded-full absolute w-[180px] h-[180px] bottom-[22%] left-[20%] max-lg:bottom-[62%] max-lg:left-[40%] max-sm:bottom-[60%] max-sm:left-[25%] '/>
           <div className='bg-purple-700 rounded-full absolute w-[180px] h-[180px] bottom-[22%] left-[70%] max-lg:bottom-[12%] max-lg:left-[40%] max-sm:bottom-[10%] max-sm:left-[25%]'/>
-          <Dev nam={"Mitansh Patel"} role={"MERN developer"} img={mit} ld={"https://www.linkedin.com/in/mitansh-patel-32a065259/"} gh={"https://github.com/MitanshPatel"} ma={"mailto:mitanshpatel8@gmail.com"}/>
+          <Dev  nam={"Mitansh Patel"} role={"MERN developer"} img={mit} ld={"https://www.linkedin.com/in/mitansh-patel-32a065259/"} gh={"https://github.com/MitanshPatel"} ma={"mailto:mitanshpatel8@gmail.com"}/>
           <Dev nam={"Yash Phatak"} role={"ML Enthusiast"} img={yash} ld={"https://www.linkedin.com/in/yash-phatak-b82931227/"} gh={"https://github.com/Yash-Phatak"} ma={"mailto:jayphatak21@gmail.com"}/>
         </div>
 
