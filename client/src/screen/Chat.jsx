@@ -231,38 +231,78 @@ function Chat() {
               <option>Dogecoin</option>
               <option>Litecoin</option>
               <option>Tron</option>
-              <option>Bitcoin</option>
+              <option>XRP</option>
+              <option>Monero</option>
+              <option>Stellar</option>
+              <option>Binance coin</option>
+              <option>Chainlink</option>
+              <option>Cardano</option>
+              <option>Cosmos</option>
+              <option>Solana</option>
+              <option>Polkadot</option>
+              <option>Uniswap</option>
+              <option>Aave</option>
             </select>
           </div>)}
           {!load && activ.three && (<div style={{ "backgroundColor": "var(--dclight)" }} className='p-2 rounded-lg flex gap-4 max-sm:flex-col max-sm:text-sm max-sm:min-w-[200px]'><p className='inline text-white'>Select crypto to analyise: </p>
             <select onChange={changeInput} value={input} style={{ "backgroundColor": "var(--dclight)"}} className='rounded-lg px-3 text-white border-none'>
-              <option>Select</option>
+            <option>Select</option>
               <option>Bitcoin</option>
               <option>Ethereum</option>
               <option>Dogecoin</option>
               <option>Litecoin</option>
               <option>Tron</option>
-              <option>Bitcoin</option>
+              <option>XRP</option>
+              <option>Monero</option>
+              <option>Stellar</option>
+              <option>Binance coin</option>
+              <option>Chainlink</option>
+              <option>Cardano</option>
+              <option>Cosmos</option>
+              <option>Solana</option>
+              <option>Polkadot</option>
+              <option>Uniswap</option>
+              <option>Aave</option>
             </select>
           </div>)}
           {!load && activ.four && (<div style={{ "backgroundColor": "var(--dclight)" }} className='p-2 rounded-lg flex gap-4 max-sm:flex-col max-sm:text-sm max-sm:min-w-[200px]'><p className='inline text-white max-sm:hidden'>Choose two to analyise: </p>
             <select onChange={(e)=>{setInput1(e.target.value); setInput(e.target.value+" "+input2)}} value={input1} style={{ "backgroundColor": "var(--dclight)"}} className='rounded-lg px-3 text-white border-none'>
-              <option>Select</option>
+            <option>Select</option>
               <option>Bitcoin</option>
               <option>Ethereum</option>
               <option>Dogecoin</option>
               <option>Litecoin</option>
               <option>Tron</option>
-              <option>Bitcoin</option>
+              <option>XRP</option>
+              <option>Monero</option>
+              <option>Stellar</option>
+              <option>Binance coin</option>
+              <option>Chainlink</option>
+              <option>Cardano</option>
+              <option>Cosmos</option>
+              <option>Solana</option>
+              <option>Polkadot</option>
+              <option>Uniswap</option>
+              <option>Aave</option>
             </select>
             <select onChange={(e)=>{setInput2(e.target.value); setInput(input1+" "+e.target.value)}} value={input2} style={{ "backgroundColor": "var(--dclight)"}} className='rounded-lg px-3 text-white border-none'>
-              <option>Select</option>
+            <option>Select</option>
               <option>Bitcoin</option>
               <option>Ethereum</option>
               <option>Dogecoin</option>
               <option>Litecoin</option>
               <option>Tron</option>
-              <option>Bitcoin</option>
+              <option>XRP</option>
+              <option>Monero</option>
+              <option>Stellar</option>
+              <option>Binance coin</option>
+              <option>Chainlink</option>
+              <option>Cardano</option>
+              <option>Cosmos</option>
+              <option>Solana</option>
+              <option>Polkadot</option>
+              <option>Uniswap</option>
+              <option>Aave</option>
             </select>
           </div>)}
 

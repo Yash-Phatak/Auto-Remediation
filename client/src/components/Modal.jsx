@@ -12,7 +12,7 @@ function Modal({ setOpenModal }) {
         <form onSubmit={() => { setOpenModal(false); localStorage.setItem('name', val);  localStorage.setItem('gen', gen)}} className='flex flex-col justify-center items-center'>
           <div className='pb-4'>
             <label for="name">Name:</label>
-            <input type="text" name="name" placeholder="Your Name" value={val} onChange={(e) => { setVal(e.target.value) }} className='bg-gray-500 h-8 px-2 border rounded-md'/>
+            <input type="text" name="name" placeholder="Your Name" value={val} onChange={(e) => { setVal(e.target.value) }} className='bg-gray-500 h-8 px-2 border rounded-md max-sm:w-[200px]'/>
           </div>
           <div className='pb-4 self-start'>
             <label>Gender: </label>

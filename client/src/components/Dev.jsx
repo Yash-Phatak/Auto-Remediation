@@ -1,9 +1,14 @@
-import React from 'react'
+import {React , useEffect} from 'react'
+import 'aos/dist/aos.css'
+import AOS from "aos"
 
 
 function Dev({ nam, role, img, ld, gh, ma }) {
+  useEffect(()=>{
+    AOS.init({duration:2000})
+  },[])
   return (
-    <div className='flex flex-shrink relative h-[250px] w-[480px] bg-white/10 backdrop-filter backdrop-blur-lg shadow-lg rounded-2xl max-sm:w-[300px] max-sm:flex-col max-sm:h-[400px]'>
+    <div data-aos="fade-out" className='flex flex-shrink relative h-[250px] w-[480px] bg-white/10 backdrop-filter backdrop-blur-lg shadow-lg rounded-2xl max-sm:w-[300px] max-sm:flex-col max-sm:h-[400px]'>
 
       <div className='flex flex-col justify-center items-center m-4'>
         <img src={img} alt="dev" className='rounded-full w-[200px] h-[200px]' />
