@@ -71,7 +71,7 @@ function Chat() {
         <div className={css.bdy}>
             <button onClick={() => setSlide(!slide)}><i className={`fa-solid  ${slide ? "" : "rotate-180"} transition ease-out delay-300 fa-circle-arrow-right fa-2xl ${css.slide}`} style={{ color: "#f7e22b" }}></i></button>
             <div className={css.top}>
-                <h1><i class="fa-solid fa-robot fa-shake fa-lg"></i><span className='ml-2'>Krypto Bot</span></h1>
+                <h1><i className="fa-solid fa-robot fa-shake fa-lg"></i><span className='ml-2'>Krypto Bot</span></h1>
             </div>
 
             <div className={`${slide ? "max-lg:translate-x-[-300vw]" : ""} ${css.sidebar} transition ease-out delay-300`}>
