@@ -101,6 +101,7 @@ label{
     min-width: 250px;
     width:800px;
     background-color: var(--dclight);
+    color: white;
 }
 input:focus {
     outline: none;

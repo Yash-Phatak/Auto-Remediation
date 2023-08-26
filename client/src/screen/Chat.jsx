@@ -6,6 +6,8 @@ import icon from '../img/icon.png'
 function Chat() {
   //for input store
   const [input, setInput] = useState("");
+  const [input1, setInput1] = useState("");
+  const [input2, setInput2] = useState("");
   //for input arr
   const [arr, setArr] = useState([]);
   //for faq
@@ -33,9 +35,9 @@ function Chat() {
   const send = async (e) => {
     e.preventDefault();
     if (input.trim() !== "") {
-      setArr([...arr, input])
       // FAQ
       if (activ.one) {
+        setArr([...arr, input])
         setLoad(true)
         const res = await fetch("http://localhost:5000/chat", {
           method: "POST",
@@ -51,6 +53,7 @@ function Chat() {
       }
       //Price fetch
       else if (activ.two) {
+        setArr([...arr, input])
         setLoad(true)
         const res = await fetch("http://localhost:5000/realtime", {
           method: "POST",
@@ -66,6 +69,7 @@ function Chat() {
       }
       //Analytics 1
       else if (activ.three) {
+        setArr([...arr, input])
         setLoad(true);
         fetch('http://localhost:5000/plot', {
           method: 'POST', // Use the POST method
@@ -88,9 +92,12 @@ function Chat() {
         setLoad(false);
       }
       //Analytics 2
-      else if (activ.three) {
+      else if (activ.four) {
+        
+        setArr([...arr, input])
+        console.log(arr);
         setLoad(true);
-        fetch('http://localhost:5000/plot', {
+        fetch('http://localhost:5000/comparison', {
           method: 'POST', // Use the POST method
           // You can add headers if needed
           headers: {
@@ -128,13 +135,13 @@ function Chat() {
         <PixelArtCard hover={false} random={true} size={200} tags={[(gen === "male") ? "human-male" : "human-female"]} />
         <h1 className="mb-12 text-xl mt-2">Hello, <span className='text-yellow-400 font-bold'>{name}</span>!</h1>
 
-        <button onClick={() => { setActiv({ one: true, two: false, three: false, four: false }); setSlide(!slide); setArr([]); setImg([]); setRecv([]); }} className={`h-[40px] w-[120px]  ${css.btn}`} style={{ backgroundImage: activ.one ? "var(--prim)" : "" }}>
+        <button onClick={() => { setActiv({ one: true, two: false, three: false, four: false }); setSlide(!slide); setArr([]); setImg([]); setRecv([]); setPrice([])}} className={`h-[40px] w-[120px]  ${css.btn}`} style={{ backgroundImage: activ.one ? "var(--prim)" : "" }}>
           FAQ</button>
-        <button onClick={() => { setActiv({ one: false, two: true, three: false, four: false }); setSlide(!slide); setArr([]); setImg([]); setRecv([]); }} className={`h-[40px] w-[120px] ${css.btn}`} style={{ backgroundImage: activ.two ? "var(--prim)" : "" }}>
+        <button onClick={() => { setActiv({ one: false, two: true, three: false, four: false }); setSlide(!slide); setArr([]); setImg([]); setRecv([]); setPrice([])}} className={`h-[40px] w-[120px] ${css.btn}`} style={{ backgroundImage: activ.two ? "var(--prim)" : "" }}>
           Price</button>
-        <button onClick={() => { setActiv({ one: false, two: false, three: true, four: false }); setSlide(!slide); setArr([]); setImg([]); setRecv([]); }} className={`h-[40px] w-[120px] ${css.btn}`} style={{ backgroundImage: activ.three ? "var(--prim)" : "" }}>
+        <button onClick={() => { setActiv({ one: false, two: false, three: true, four: false }); setSlide(!slide); setArr([]); setImg([]); setRecv([]); setPrice([])}} className={`h-[40px] w-[120px] ${css.btn}`} style={{ backgroundImage: activ.three ? "var(--prim)" : "" }}>
           Analytics 1</button>
-        <button onClick={() => { setActiv({ one: false, two: false, three: false, four: true }); setSlide(!slide); setArr([]); setImg([]); setRecv([]); }} className={`h-[40px] w-[120px] ${css.btn}`} style={{ backgroundImage: activ.four ? "var(--prim)" : "" }}>
+        <button onClick={() => { setActiv({ one: false, two: false, three: false, four: true }); setSlide(!slide); setArr([]); setImg([]); setRecv([]); setPrice([])}} className={`h-[40px] w-[120px] ${css.btn}`} style={{ backgroundImage: activ.four ? "var(--prim)" : "" }}>
           Analytics 2</button>
 
       </div>
@@ -200,7 +207,7 @@ function Chat() {
                 <div key={i} className={`${css.mssg1}`}>
                   <p>{data}</p>
                 </div>
-                {(i >= img.length) ? "" : (<div className='mx-[5px] my-[18px] p-2 bg-black text-white rounded-lg'><img src={img[i]} alt='plot here' className='max-h-[500px] max-w-[600px] max-sm:max-w-[340px] self-start' /></div>)}
+                {(i >= img.length) ? "" : (<div className='mx-[8px] my-[18px] p-2 bg-black text-white rounded-lg self-start'><img src={img[i]} alt='plot here' className='max-h-[500px] max-w-[600px] max-sm:max-w-[340px]' /></div>)}
               </>
             )
           })))
@@ -217,7 +224,7 @@ function Chat() {
 
           {!load && activ.one && (<input className={`${css.inpu}`} onChange={changeInput} value={input} placeholder='How can we help you today?'></input>)}
           {!load && activ.two && (<div style={{ "backgroundColor": "var(--dclight)" }} className='p-2 rounded-lg flex gap-4 max-sm:flex-col max-sm:text-sm max-sm:min-w-[200px]'><p className='inline text-white'>Choose a crypto: </p>
-            <select onChange={changeInput} style={{ "backgroundColor": "var(--dclight)"}} className='rounded-lg px-3 text-white border-none'>
+            <select onChange={changeInput} value={input} style={{ "backgroundColor": "var(--dclight)"}} className='rounded-lg px-3 text-white border-none'>
               <option>Select</option>
               <option>Bitcoin</option>
               <option>Ethereum</option>
@@ -228,7 +235,7 @@ function Chat() {
             </select>
           </div>)}
           {!load && activ.three && (<div style={{ "backgroundColor": "var(--dclight)" }} className='p-2 rounded-lg flex gap-4 max-sm:flex-col max-sm:text-sm max-sm:min-w-[200px]'><p className='inline text-white'>Select crypto to analyise: </p>
-            <select onChange={changeInput} style={{ "backgroundColor": "var(--dclight)"}} className='rounded-lg px-3 text-white border-none'>
+            <select onChange={changeInput} value={input} style={{ "backgroundColor": "var(--dclight)"}} className='rounded-lg px-3 text-white border-none'>
               <option>Select</option>
               <option>Bitcoin</option>
               <option>Ethereum</option>
@@ -238,7 +245,26 @@ function Chat() {
               <option>Bitcoin</option>
             </select>
           </div>)}
-          {!load && activ.four && (<input className={css.inpu} onChange={changeInput} value={input} placeholder='How can we help you today?'></input>)}
+          {!load && activ.four && (<div style={{ "backgroundColor": "var(--dclight)" }} className='p-2 rounded-lg flex gap-4 max-sm:flex-col max-sm:text-sm max-sm:min-w-[200px]'><p className='inline text-white'>Choose two to analyise: </p>
+            <select onChange={(e)=>{setInput1(e.target.value); setInput(e.target.value+" "+input2)}} value={input1} style={{ "backgroundColor": "var(--dclight)"}} className='rounded-lg px-3 text-white border-none'>
+              <option>Select</option>
+              <option>Bitcoin</option>
+              <option>Ethereum</option>
+              <option>Dogecoin</option>
+              <option>Litecoin</option>
+              <option>Tron</option>
+              <option>Bitcoin</option>
+            </select>
+            <select onChange={(e)=>{setInput2(e.target.value); setInput(input1+" "+e.target.value)}} value={input2} style={{ "backgroundColor": "var(--dclight)"}} className='rounded-lg px-3 text-white border-none'>
+              <option>Select</option>
+              <option>Bitcoin</option>
+              <option>Ethereum</option>
+              <option>Dogecoin</option>
+              <option>Litecoin</option>
+              <option>Tron</option>
+              <option>Bitcoin</option>
+            </select>
+          </div>)}
 
           <button className={`h-[40px] w-[130px] ${css.btn}`} style={{ backgroundImage: "var(--prim)" }} type='submit'> <i className="fa-solid fa-paper-plane m-2"></i></button>
         </form>
