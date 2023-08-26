@@ -245,7 +245,7 @@ function Chat() {
               <option>Bitcoin</option>
             </select>
           </div>)}
-          {!load && activ.four && (<div style={{ "backgroundColor": "var(--dclight)" }} className='p-2 rounded-lg flex gap-4 max-sm:flex-col max-sm:text-sm max-sm:min-w-[200px]'><p className='inline text-white'>Choose two to analyise: </p>
+          {!load && activ.four && (<div style={{ "backgroundColor": "var(--dclight)" }} className='p-2 rounded-lg flex gap-4 max-sm:flex-col max-sm:text-sm max-sm:min-w-[200px]'><p className='inline text-white max-sm:hidden'>Choose two to analyise: </p>
             <select onChange={(e)=>{setInput1(e.target.value); setInput(e.target.value+" "+input2)}} value={input1} style={{ "backgroundColor": "var(--dclight)"}} className='rounded-lg px-3 text-white border-none'>
               <option>Select</option>
               <option>Bitcoin</option>
