@@ -66,10 +66,10 @@
     font-family: var(--font2);
     color: var(--sec);
     background-color: rgb(21, 21, 21);
-    margin: 5px 18px;
+    margin: 9px 18px;
     padding: 10px 15px;
     border-radius: 15px 15px 15px 0px;
-    max-width: 40vw;
+    max-width: 42vw;
     align-self: flex-start;
 }
 

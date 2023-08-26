@@ -15,24 +15,25 @@ app.use(cors(corsOptions));
 app.get('/', (req,res)=>{
     res.send("Working");
 })
+
 app.post('/chat', async (req,res)=>{
     const chat = req.body;
-    var good = "mit"+Math.random()
+    var good = "Consectetur velit cillum Lorem proident ex anim.Mollit amet nisi esse fugiat aliqua officia consectetur tempor adipisicing officia sint aute magna eu."+Math.random()
     try{
         await Mssg.add(chat)
-        .then(res.send({"message":good}));
+        .then(res.send({"answer":good}));
     }catch(err){
         console.log(err);
     }
     
 })
 
-app.post('/chat2', async (req,res)=>{
+app.post('/realtime', async (req,res)=>{
     const chat = req.body;
-    var good = "mit"+Math.random()*300
+    var good = {"ath":"62000", "atl":"4800", "day":"34000", "night":"29234"}
     try{
         await Mssg.add(chat)
-        .then(res.send({"message":good}));
+        .then(res.send({"answer":good}));
     }catch(err){
         console.log(err);
     }

@@ -10,8 +10,8 @@ function Navbar() {
     <div className={`py-4 ${nc.navbar} px-36 max-md:px-16 ${drop ? "" : "flex flex-col flex-1"}`}>
       <div className='max-sm:mx-auto flex flex-1 justify-between items-center relative'>
         <div>
-          <img src={icon} alt="icon" className='h-[40px] w-[40px] inline'></img>
-          <HashLink smooth to="#top">Krypto Bot</HashLink>
+          <img src={icon} alt="icon" className='h-[40px] w-[40px] mr-2 inline'></img>
+          <HashLink className='tracking-wider' smooth to="#top">Crypton</HashLink>
         </div>
         
       </div>

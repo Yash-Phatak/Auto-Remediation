@@ -31,9 +31,9 @@ function Fp({ open }) {
         </div>
 
         <div className='flex justify-around items-center flex-1 mt-24 max-lg:flex-col gap-5 lg:mx-10' id="feat">
-          <Fcard img={i1} head={"Lorem Ipsum"} detail={"Velit anim anim voluptate incididunt sint sint est. Laborum qui sint ullamco non labore. Et nulla eu aute aliqua ea deserunt irure voluptate adipisicing. Amet qui labore velit culpa."} />
-          <Fcard img={i4} head={"Lorem Ipsum"} detail={"Velit anim anim voluptate incididunt sint sint est. Laborum qui sint ullamco non labore. Et nulla eu aute aliqua ea deserunt irure voluptate adipisicing. Amet qui labore velit culpa."} />
-          <Fcard img={i3} head={"Lorem Ipsum"} detail={"Velit anim anim voluptate incididunt sint sint est. Laborum qui sint ullamco non labore. Et nulla eu aute aliqua ea deserunt irure voluptate adipisicing. Amet qui labore velit culpa."} />
+          <Fcard img={i1} head={"Crypton"} detail={"🤖 Unravel the answers you seek! Engage with Crypton, a digital companion designed to swiftly address your queries. No more hunting for information – just ask and enlighten yourself effortlessly. "} />
+          <Fcard img={i4} head={"Data Dynamo"} detail={"📊 Dive into the world of Data Dynamo! From insightful trends to comprehensive analysis, empower your decision-making with real-time data analytics. Unleash the potential of information and transform it into actionable wisdom. "} />
+          <Fcard img={i3} head={"Market Pulsebeat"} detail={"💹Stay ahead with Market Pulsebeat! Instantly access real-time prices and trends for your essential assets. Seize the rhythm of the crypto market at your fingertips."} />
         </div>
 
         <div  className='text-yellow-400 text-5xl font-semibold mt-24 max-sm:text-4xl tracking-wider' style={{ "fontFamily": "var(--font1" }}>Meet the Devs!</div>
