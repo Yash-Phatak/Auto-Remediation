@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-function Dev({ nam, role, img, ld, gh }) {
+function Dev({ nam, role, img, ld, gh, ma }) {
   return (
     <div className='flex flex-shrink relative h-[250px] w-[480px] bg-white/10 backdrop-filter backdrop-blur-lg shadow-lg rounded-2xl max-sm:w-[300px] max-sm:flex-col max-sm:h-[400px]'>
 
@@ -16,6 +16,7 @@ function Dev({ nam, role, img, ld, gh }) {
         <div className='flex gap-5 pb-10 max-sm:pt-5'>
           <a href={ld}><i className="fa-brands fa-linkedin fa-2xl" style={{ "color": "#000000" }}></i></a>
           <a href={gh}><i className="fa-brands fa-github fa-2xl" style={{ "color": "#000000" }}></i></a>
+          <a href={ma}><i className="fa-solid fa-envelope fa-2xl" style={{ "color": "#000000" }}></i></a>
         </div>
       </div>
     </div>

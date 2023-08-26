@@ -141,10 +141,10 @@ function Chat() {
 
       <div className={css.chatArea}  >
         {/* FAQ */}
-        {activ.one && (<div className={`${css.mssg2} max-sm:text-sm max-sm:min-w-[280px]`}><p>Hello, I am Crypton! </p><p>I am a one-stop solution to all your Cryptocurrency related doubts. How can I help you?</p></div>)}
-        {activ.two && (<div className={`${css.mssg2} max-sm:text-sm max-sm:min-w-[300px]`}><p>Hello, I am Crypton! </p><p>I am a one-stop solution to all your Cryptocurrency related doubts. How can I help you?</p></div>)}
-        {activ.three && (<div className={`${css.mssg2} max-sm:text-sm max-sm:min-w-[300px]`}><p>Hello, I am Crypton! </p><p>I am a one-stop solution to all your Cryptocurrency related doubts. How can I help you?</p></div>)}
-        {activ.four && (<div className={`${css.mssg2} max-sm:text-sm max-sm:min-w-[300px]`}><p>Hello, I am Crypton! </p><p>I am a one-stop solution to all your Cryptocurrency related doubts. How can I help you?</p></div>)}
+        {activ.one && (<div className={`${css.mssg2} max-sm:text-sm max-sm:min-w-[280px]`}><p>Hello there! 👋🪙 I am Crypton, Your go-to guide for all things cryptocurrency! 🌌🔍 </p><p> How can I assist you today? Feel free to ask away! 🚀💬</p></div>)}
+        {activ.two && (<div className={`${css.mssg2} max-sm:text-sm max-sm:min-w-[300px]`}><p>Hello there! 📊🌐 Wondering about your crypto's current state?</p><p>Just type its name, and we'll show you the latest real time data of the same!. Stay informed effortlessly! 💹🚀</p></div>)}
+        {activ.three && (<div className={`${css.mssg2} max-sm:text-sm max-sm:min-w-[300px]`}><p>Hey there! 📈🔍 Ready to dive into crypto history?  </p><p>Just drop the name, and watch the magic unfold as we paint its entire journey on a sleek graph for you! 🚀📊</p></div>)}
+        {activ.four && (<div className={`${css.mssg2} max-sm:text-sm max-sm:min-w-[300px]`}><p>Hi there! 🤝📊 Stuck picking a crypto? </p><p>No worries! Just type in the names of the two contenders, and we'll conjure up a comparison graph so you can see them go head-to-head. 📊🚀</p></div>)}
         {
           (activ.one && (arr.map((data, i) => {
             return (
@@ -215,7 +215,7 @@ function Chat() {
         <form onSubmit={send} className={css.inp}>
           {load && (<h1 className='text-3xl text-white font-bold'>Loading....</h1>)}
 
-          {!load && activ.one && (<input className={css.inpu} onChange={changeInput} value={input} placeholder='How can we help you today?'></input>)}
+          {!load && activ.one && (<input className={`${css.inpu}`} onChange={changeInput} value={input} placeholder='How can we help you today?'></input>)}
           {!load && activ.two && (<div style={{ "backgroundColor": "var(--dclight)" }} className='p-2 rounded-lg flex gap-4 max-sm:flex-col max-sm:text-sm max-sm:min-w-[200px]'><p className='inline text-white'>Choose a crypto: </p>
             <select onChange={changeInput} style={{ "backgroundColor": "var(--dclight)"}} className='rounded-lg px-3 text-white border-none'>
               <option>Select</option>
@@ -227,7 +227,7 @@ function Chat() {
               <option>Bitcoin</option>
             </select>
           </div>)}
-          {!load && activ.three && (<div style={{ "backgroundColor": "var(--dclight)" }} className='p-2 rounded-lg flex gap-4 max-sm:flex-col max-sm:text-sm max-sm:min-w-[200px]'><p className='inline text-white'>Which crypto to analyize: </p>
+          {!load && activ.three && (<div style={{ "backgroundColor": "var(--dclight)" }} className='p-2 rounded-lg flex gap-4 max-sm:flex-col max-sm:text-sm max-sm:min-w-[200px]'><p className='inline text-white'>Select crypto to analyise: </p>
             <select onChange={changeInput} style={{ "backgroundColor": "var(--dclight)"}} className='rounded-lg px-3 text-white border-none'>
               <option>Select</option>
               <option>Bitcoin</option>
