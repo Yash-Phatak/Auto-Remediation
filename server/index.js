@@ -19,7 +19,18 @@ app.post('/chat', async (req,res)=>{
     const chat = req.body;
     var good = "mit"+Math.random()
     try{
-        
+        await Mssg.add(chat)
+        .then(res.send({"message":good}));
+    }catch(err){
+        console.log(err);
+    }
+    
+})
+
+app.post('/chat2', async (req,res)=>{
+    const chat = req.body;
+    var good = "mit"+Math.random()*300
+    try{
         await Mssg.add(chat)
         .then(res.send({"message":good}));
     }catch(err){

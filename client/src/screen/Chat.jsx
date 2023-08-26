@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
 import css from '../astylus/chat.module.css'
 import { PixelArtCard } from 'react-pixelart-face-card'
+import icon from '../img/icon.png'
 
 function Chat() {
     const [input, setInput] = useState("");
     const [recv, setRecv] = useState([]);
     const [arr, setArr] = useState([]);
+    const [load, setLoad] = useState(false)
     const mssgend = useRef();
     const [slide, setSlide] = useState(false);
     const [activ, setActiv] = useState({ one: true, two: false, three: false });
@@ -24,44 +26,48 @@ function Chat() {
         e.preventDefault();
         if (input.trim() !== "") {
             setArr([...arr, input])
-            // if (activ.one) {
-            //     const res = await fetch("http://localhost:5000/chat", {
-            //         method: "POST",
-            //         headers: {
-            //             'Content-Type': 'application/json'
-            //         },
-            //         body: JSON.stringify({ message: input })
-            //     });
-            //     var temp = await res.json();
-            //     console.log(temp.message);
-            //     setRecv([...recv, temp.message]);
-            //     console.log(recv);
-                
-            // }
-            // else if (activ.two) {
-            //     const res = await fetch("http://localhost:5000/chat", {
-            //         method: "POST",
-            //         headers: {
-            //             'Content-Type': 'application/json'
-            //         },
-            //         body: JSON.stringify({ message: input })
-            //     });
-            //     var temp = await res.json();
-
-            //     setRecv([...recv, temp.message]);
-            // }
-            // else {
-            //     const res = await fetch("http://localhost:5000/chat", {
-            //         method: "POST",
-            //         headers: {
-            //             'Content-Type': 'application/json'
-            //         },
-            //         body: JSON.stringify({ message: input })
-            //     });
-            //     var temp = await res.json();
-            //     setRecv([...recv, temp.message]);
-            // }
-            //setArr([...arr, recv])
+            if (activ.one) {
+                setLoad(true)
+                const res = await fetch("http://localhost:5000/chat", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ message: input })
+                });
+                var temp = await res.json();
+                console.log(temp.message);
+                setRecv([...recv, temp.message]);
+                console.log(recv);
+                setLoad(false);
+            }
+            else if (activ.two) {
+                setLoad(true)
+                const res = await fetch("http://localhost:5000/chat2", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ message: input })
+                });
+                var temp = await res.json();
+                setRecv([...recv, temp.message]);
+                setLoad(false);
+            }
+            else {
+                setLoad(true);
+                const res = await fetch("http://localhost:5000/chat", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ message: input })
+                });
+                var temp = await res.json();
+                setRecv([...recv, temp.message]);
+                setLoad(false);
+            }
+            
             setInput("");
         }
 
@@ -71,7 +77,7 @@ function Chat() {
         <div className={css.bdy}>
             <button onClick={() => setSlide(!slide)}><i className={`fa-solid  ${slide ? "" : "rotate-180"} transition ease-out delay-300 fa-circle-arrow-right fa-2xl ${css.slide}`} style={{ color: "#f7e22b" }}></i></button>
             <div className={css.top}>
-                <h1><i className="fa-solid fa-robot fa-shake fa-lg"></i><span className='ml-2'>Krypto Bot</span></h1>
+                <img src={icon} alt="icon" className='h-[40px] w-[40px] inline'></img><span className='ml-2'>Krypto Bot</span>
             </div>
 
             <div className={`${slide ? "max-lg:translate-x-[-300vw]" : ""} ${css.sidebar} transition ease-out delay-300`}>
@@ -94,7 +100,7 @@ function Chat() {
                                 <div key={i} className={`${css.mssg1}`}>
                                     <p>{data}</p>
                                 </div>
-                                {(i>= recv.length )? "" : (<div className={`${css.mssg2}`} ><p>{recv[i]}</p></div>)}
+                                {(i>= recv.length )? "" : (<div className={`${css.mssg2}`} id={i}><p>{recv[i]}</p></div>)}
                             </>
                         )
                         
@@ -107,7 +113,8 @@ function Chat() {
 
             <div className={css.foot}>
                 <form onSubmit={send} className={css.inp}>
-                    <input className={css.inpu} onChange={changeInput} value={input} placeholder='How can we help you today?'></input>
+                    {load && (<h1 className='text-3xl text-white font-bold'>Loading....</h1>)}
+                    {!load && (<input className={css.inpu} onChange={changeInput} value={input} placeholder='How can we help you today?'></input>)}
                     <button className={`h-[40px] w-[130px] ${css.btn}`} style={{ backgroundImage: "var(--prim)" }} type='submit'> <i className="fa-solid fa-paper-plane m-2"></i></button>
                 </form>
             </div>
