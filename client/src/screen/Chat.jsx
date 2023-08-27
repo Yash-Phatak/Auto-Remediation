@@ -62,9 +62,8 @@ function Chat() {
           },
           body: JSON.stringify({ message: input })
         });
-        var temp = await res.json();
-        console.log(temp.answer.night);
-        setPrice([...price, temp.answer.ath, temp.answer.atl, temp.answer.day, temp.answer.night]);
+        var temp1 = await res.json();
+        setPrice([...price, temp1.ath, temp1.atl, temp1.high24h, temp1.low24h]);
         setLoad(false);
       }
       //Analytics 1
@@ -215,7 +214,7 @@ function Chat() {
 
 
         {/* for autoscroll */}
-        <div ref={mssgend}></div>
+        <div ref={mssgend} className='absolute bottom-0 right-0'></div>
       </div>
 
       <div className={css.foot}>

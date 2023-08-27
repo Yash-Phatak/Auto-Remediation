@@ -49,6 +49,7 @@
     align-items: flex-end;
     overflow-y: scroll;
     background-color: var(--dclight);
+    position: relative;
 }
 
 .mssg1{
