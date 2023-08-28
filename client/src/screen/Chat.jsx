@@ -43,7 +43,11 @@ function Chat() {
         const res = await fetch("https://crypton-backend.onrender.com/faq", {
           method: "POST",
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            "Access-Control-Allow-Headers":"X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
+            "Access-Control-Allow-Credentials":"true",
+            "Access-Control-Allow-Origin":"*",
+            "Access-Control-Allow-Methods":"GET,OPTIONS,PATCH,DELETE,POST,PUT"
           },
           body: JSON.stringify({ message: input })
         });
