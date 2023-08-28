@@ -47,6 +47,7 @@ function Chat() {
           },
           body: JSON.stringify({ message: input })
         });
+        console.log(res);
         var temp = await res.json();
         console.log(temp);
         setRecv([...recv, temp.answer]);
@@ -57,14 +58,15 @@ function Chat() {
         setArr([...arr, input])
         console.log(input);
         setLoad(true)
-        const res = await fetch("https://crypton-backend.onrender.com/realtime", {
+        const res1 = await fetch("https://crypton-backend.onrender.com/realtime", {
           method: "POST",
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({ message: input })
         });
-        var temp1 = await res.json();
+        console.log(res1);
+        var temp1 = await res1.json();
         console.log(temp1);
         setPrice([...price, temp1.ath, temp1.atl, temp1.high24h, temp1.low24h]);
         setLoad(false);
