@@ -65,11 +65,11 @@ function Chat() {
           },
           body: JSON.stringify({ message: input })
         });
+        setLoad(false);
         console.log(res1);
         var temp1 = await res1.json();
         console.log(temp1);
-        setPrice([...price, temp1.ath, temp1.atl, temp1.high24h, temp1.low24h]);
-        setLoad(false);
+        setPrice([...price, Math.round(temp1.ath), Math.round(temp1.atl), Math.round(temp1.high24h), Math.round(temp1.low24h)]);
       }
       //Analytics 1
       else if (activ.three) {
@@ -173,7 +173,7 @@ function Chat() {
 
         {/* Latest Price fetch */}
         {
-          (activ.two && (arr.map((data, i) => {
+          (activ.two && !load && (arr.map((data, i) => {
             j = (i*4);
             return (
               <>
