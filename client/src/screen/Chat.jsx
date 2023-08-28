@@ -69,7 +69,7 @@ function Chat() {
         console.log(res1);
         var temp1 = await res1.json();
         console.log(temp1);
-        setPrice([...price, Math.round(temp1.ath), Math.round(temp1.atl), Math.round(temp1.high24h), Math.round(temp1.low24h)]);
+        setPrice([...price, temp1.ath.toFixed(2), temp1.atl.toFixed(2), temp1.high24h.toFixed(2), temp1.low24h.toFixed(2)]);
       }
       //Analytics 1
       else if (activ.three) {
