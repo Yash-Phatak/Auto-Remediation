@@ -40,20 +40,15 @@ function Chat() {
         console.log(input);
         setArr([...arr, input])
         setLoad(true)
-        const url = 'https://cors-proxy3.p.rapidapi.com/api';
-        const options = {
-          method: 'POST',
+        const res = await fetch("https://crypton-backend.onrender.com/faq", {
+          method: "POST",
           headers: {
-            'content-type': 'application/x-www-form-urlencoded',
-            'X-RapidAPI-Key': '6663242eafmsh3b9506f43a6e276p15b3d5jsn1048272ff07c',
-            'X-RapidAPI-Host': 'cors-proxy3.p.rapidapi.com'
+            'Content-Type': 'application/json'
           },
-          body: new URLSearchParams({
-            'my-url': 'https://crypton-backend.onrender.com/faq'
-          })
-        };
-        const response = await fetch(url, options);
-	      const temp = await response.text();
+          body: JSON.stringify({ message: input })
+        });
+        console.log(res);
+        var temp = await res.json();
         console.log(temp);
         setRecv([...recv, temp.answer]);
         setLoad(false);
