@@ -173,14 +173,14 @@ function Chat() {
 
         {/* Latest Price fetch */}
         {
-          (activ.two && !load && (arr.map((data, i) => {
+          (activ.two && (arr.map((data, i) => {
             j = (i*4);
             return (
               <>
                 <div key={i} className={`${css.mssg1}`}>
                   <p>{data}</p>
                 </div>
-                {((i * 4) >= (price.length+1)) ? "" : (<div className={`${css.mssg2} max-sm:text-sm max-sm:min-w-[280px]`} id={i}>
+                {(((i * 4) >= (price.length+1))&& !load ) ? "" : (<div className={`${css.mssg2} max-sm:text-sm max-sm:min-w-[280px]`} id={i}>
                   <p className='text-yellow-500 text-xl'>{`For ${data}`}</p>
                   <p className='mb-2'>Currently the data prices are :</p>
                   <p>{`All time high :  $${price[j]}`}</p>
