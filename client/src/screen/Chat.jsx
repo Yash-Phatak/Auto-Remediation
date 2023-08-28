@@ -43,11 +43,7 @@ function Chat() {
         const res = await fetch("https://crypton-backend.onrender.com/faq", {
           method: "POST",
           headers: {
-            'Content-Type': 'application/json',
-            "Access-Control-Allow-Headers":"X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
-            "Access-Control-Allow-Credentials":"true",
-            "Access-Control-Allow-Origin":"*",
-            "Access-Control-Allow-Methods":"GET,OPTIONS,PATCH,DELETE,POST,PUT"
+            'Content-Type': 'application/json'
           },
           body: JSON.stringify({ message: input })
         });
@@ -69,11 +65,9 @@ function Chat() {
           },
           body: JSON.stringify({ message: input })
         });
-        setLoad(false);
-        console.log(res1);
         var temp1 = await res1.json();
-        console.log(temp1);
         setPrice([...price, temp1.ath.toFixed(2), temp1.atl.toFixed(2), temp1.high24h.toFixed(2), temp1.low24h.toFixed(2)]);
+        setLoad(false);
       }
       //Analytics 1
       else if (activ.three) {
@@ -92,7 +86,6 @@ function Chat() {
           .then(response => response.blob())
           .then(blob => {
             const imageUrl = URL.createObjectURL(blob);
-            console.log("img recved");
             setImg([...img, imageUrl]);
           })
           .catch(error => {
@@ -119,7 +112,6 @@ function Chat() {
           .then(response => response.blob())
           .then(blob => {
             const imageUrl = URL.createObjectURL(blob);
-            console.log("img recved");
             setImg([...img, imageUrl]);
           })
           .catch(error => {
