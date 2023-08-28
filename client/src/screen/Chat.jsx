@@ -39,7 +39,7 @@ function Chat() {
       if (activ.one) {
         setArr([...arr, input])
         setLoad(true)
-        const res = await fetch("http://localhost:5000/chat", {
+        const res = await fetch("https://crypton-backend.onrender.com/chat", {
           method: "POST",
           headers: {
             'Content-Type': 'application/json'
@@ -55,7 +55,7 @@ function Chat() {
       else if (activ.two) {
         setArr([...arr, input])
         setLoad(true)
-        const res = await fetch("http://localhost:5000/realtime", {
+        const res = await fetch("https://crypton-backend.onrender.com/realtime", {
           method: "POST",
           headers: {
             'Content-Type': 'application/json'
@@ -70,7 +70,7 @@ function Chat() {
       else if (activ.three) {
         setArr([...arr, input])
         setLoad(true);
-        fetch('http://localhost:5000/plot', {
+        fetch('https://crypton-backend.onrender.com/plot', {
           method: 'POST', // Use the POST method
           // You can add headers if needed
           headers: {
@@ -96,7 +96,7 @@ function Chat() {
         setArr([...arr, input])
         console.log(arr);
         setLoad(true);
-        fetch('http://localhost:5000/comparison', {
+        fetch('https://crypton-backend.onrender.com/comparison', {
           method: 'POST', // Use the POST method
           // You can add headers if needed
           headers: {
