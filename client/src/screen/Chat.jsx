@@ -53,7 +53,7 @@ function Chat() {
           })
         };
         const response = await fetch(url, options);
-	      const temp = await response.text();
+	      const temp = await response.json();
         console.log(temp);
         setRecv([...recv, temp.answer]);
         setLoad(false);
