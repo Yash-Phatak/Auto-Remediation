@@ -39,7 +39,7 @@ function Chat() {
       if (activ.one) {
         setArr([...arr, input])
         setLoad(true)
-        const res = await fetch("https://crypton-backend.onrender.com/chat", {
+        const res = await fetch("https://crypton-backend.onrender.com/faq", {
           method: "POST",
           headers: {
             'Content-Type': 'application/json'
@@ -47,7 +47,6 @@ function Chat() {
           body: JSON.stringify({ message: input })
         });
         var temp = await res.json();
-        console.log(temp.answer);
         setRecv([...recv, temp.answer]);
         setLoad(false);
       }
