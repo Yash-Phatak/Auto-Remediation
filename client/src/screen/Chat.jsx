@@ -37,6 +37,7 @@ function Chat() {
     if (input.trim() !== "") {
       // FAQ
       if (activ.one) {
+        console.log(input);
         setArr([...arr, input])
         setLoad(true)
         const res = await fetch("https://crypton-backend.onrender.com/faq", {
@@ -47,12 +48,14 @@ function Chat() {
           body: JSON.stringify({ message: input })
         });
         var temp = await res.json();
+        console.log(temp);
         setRecv([...recv, temp.answer]);
         setLoad(false);
       }
       //Price fetch
       else if (activ.two) {
         setArr([...arr, input])
+        console.log(input);
         setLoad(true)
         const res = await fetch("https://crypton-backend.onrender.com/realtime", {
           method: "POST",
@@ -62,6 +65,7 @@ function Chat() {
           body: JSON.stringify({ message: input })
         });
         var temp1 = await res.json();
+        console.log(temp1);
         setPrice([...price, temp1.ath, temp1.atl, temp1.high24h, temp1.low24h]);
         setLoad(false);
       }
@@ -82,6 +86,7 @@ function Chat() {
           .then(response => response.blob())
           .then(blob => {
             const imageUrl = URL.createObjectURL(blob);
+            console.log("img recved");
             setImg([...img, imageUrl]);
           })
           .catch(error => {
@@ -108,6 +113,7 @@ function Chat() {
           .then(response => response.blob())
           .then(blob => {
             const imageUrl = URL.createObjectURL(blob);
+            console.log("img recved");
             setImg([...img, imageUrl]);
           })
           .catch(error => {
