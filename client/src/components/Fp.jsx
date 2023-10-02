@@ -44,7 +44,7 @@ function Fp({ open }) {
         </div>
         <div id="vid" className='relative bottom-[100px]'></div>
         <div className='flex justify-center items-center'>
-          <iframe crossorigin="anonymous" className='w-[930px] h-[500px] max-sm:w-[320px] max-sm:h-[200px]' src="//www.youtube.com/embed/jJD1UnciHfA?si=0PkFEaJNFWrRmE8J" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+          <iframe crossorigin="anonymous" className='w-[930px] h-[500px] max-lg:w-[770px] max-lg:h-[400px] max-md:w-[600px] max-md:h-[300px] max-sm:w-[320px] max-sm:h-[180px]' src="//www.youtube.com/embed/jJD1UnciHfA?si=0PkFEaJNFWrRmE8J" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
         </div>
 
         <div id="dev" className='text-yellow-400 text-5xl font-semibold mt-16 max-sm:text-4xl tracking-wider' style={{ "fontFamily": "var(--font1" }}>Meet the Devs!</div>
