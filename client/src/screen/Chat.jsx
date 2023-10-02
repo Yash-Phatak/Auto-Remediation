@@ -155,7 +155,7 @@ function Chat() {
         {activ.three && (<div className={`${css.mssg2} max-sm:text-sm max-sm:min-w-[300px]`}><p>Hey there! 📈🔍 Ready to dive into crypto history?  </p><p>Just drop the name, and watch the magic unfold as we paint its entire journey on a sleek graph for you! 🚀📊</p></div>)}
         {activ.four && (<div className={`${css.mssg2} max-sm:text-sm max-sm:min-w-[300px]`}><p>Hi there! 🤝📊 Stuck picking a crypto? </p><p>No worries! Just type in the names of the two contenders, and we'll conjure up a comparison graph so you can see them go head-to-head. 📊🚀</p></div>)}
         {
-          (activ.one && (<iframe className='w-[900px] h-[500px] max-lg:w-[770px] max-lg:h-[400px] max-md:w-[600px] max-md:h-[300px] max-sm:w-[320px] max-sm:h-[180px]' src="https://www.youtube.com/embed/S_A774avQUY?si=HQyzOXu9kE0_8Yqc" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>))
+          (activ.one && (<iframe className='max-sm:mx-auto mr-5 w-[900px] h-[500px] max-lg:w-[700px] max-lg:h-[400px] max-md:w-[600px] max-md:h-[350px] max-sm:w-[320px] max-sm:h-[180px]' src="https://www.youtube.com/embed/S_A774avQUY?si=HQyzOXu9kE0_8Yqc" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>))
         }
 
         {/* Latest Price fetch */}
