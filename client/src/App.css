@@ -11,7 +11,7 @@
     --font2: 'Poppins', sans-serif;
 }
 
-iframe{
+#webpack-dev-server-client-overlay{
     display: none;
 }
 
