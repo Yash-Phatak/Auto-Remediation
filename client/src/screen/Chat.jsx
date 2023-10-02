@@ -155,16 +155,7 @@ function Chat() {
         {activ.three && (<div className={`${css.mssg2} max-sm:text-sm max-sm:min-w-[300px]`}><p>Hey there! 📈🔍 Ready to dive into crypto history?  </p><p>Just drop the name, and watch the magic unfold as we paint its entire journey on a sleek graph for you! 🚀📊</p></div>)}
         {activ.four && (<div className={`${css.mssg2} max-sm:text-sm max-sm:min-w-[300px]`}><p>Hi there! 🤝📊 Stuck picking a crypto? </p><p>No worries! Just type in the names of the two contenders, and we'll conjure up a comparison graph so you can see them go head-to-head. 📊🚀</p></div>)}
         {
-          (activ.one && (arr.map((data, i) => {
-            return (
-              <>
-                <div key={i} className={`${css.mssg1}`}>
-                  <p>{data}</p>
-                </div>
-                {(i >= recv.length) ? "" : (<div className={`${css.mssg2} max-sm:text-sm max-sm:min-w-[280px]`} id={i}><p>{recv[i]}</p></div>)}
-              </>
-            )
-          })))
+          (activ.one && (<iframe className='w-[900px] h-[500px] max-lg:w-[770px] max-lg:h-[400px] max-md:w-[600px] max-md:h-[300px] max-sm:w-[320px] max-sm:h-[180px]' src="https://www.youtube.com/embed/S_A774avQUY?si=HQyzOXu9kE0_8Yqc" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>))
         }
 
         {/* Latest Price fetch */}
@@ -224,7 +215,7 @@ function Chat() {
         <form onSubmit={send} className={css.inp}>
           {load && (<h1 className='text-3xl text-white font-bold'>Loading....</h1>)}
 
-          {!load && activ.one && (<input className={`${css.inpu}`} onChange={changeInput} value={input} placeholder='How can we help you today?'></input>)}
+          {!load && activ.one && (<div className={`${css.inpu} text-red-500 flex justify-center items-center max-md:text-sm max-sm:text-xs`}>FAQ feature does not work in free deployment site. Check out other features</div>)}
           {!load && activ.two && (<div style={{ "backgroundColor": "var(--dclight)" }} className='p-2 rounded-lg flex gap-4 max-sm:flex-col max-sm:text-sm max-sm:min-w-[200px]'><p className='inline text-white'>Choose a crypto: </p>
             <select onChange={changeInput} value={input} style={{ "backgroundColor": "var(--dclight)"}} className='rounded-lg px-3 text-white border-none'>
               <option>Select</option>
@@ -308,7 +299,7 @@ function Chat() {
             </select>
           </div>)}
 
-          <button className={`h-[40px] w-[130px] ${css.btn}`} style={{ backgroundImage: "var(--prim)" }} type='submit'> <i className="fa-solid fa-paper-plane m-2"></i></button>
+          {!activ.one && (<button className={`h-[40px] w-[130px] ${css.btn}`} style={{ backgroundImage: "var(--prim)" }} type='submit'> <i className="fa-solid fa-paper-plane m-2"></i></button>)}
         </form>
       </div>
     </div>
