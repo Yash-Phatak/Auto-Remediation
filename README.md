@@ -1,2 +1,4 @@
 # Krypto-ChatBot
-A chatbot
+A crypto chatbot
+
+Checkout out website - https://crypton-chatbot.vercel.app/
