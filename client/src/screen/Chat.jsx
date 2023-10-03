@@ -95,7 +95,7 @@ function Chat() {
       }
       //Analytics 2
       else if (activ.four) {
-        
+
         setArr([...arr, input])
         console.log(arr);
         setLoad(true);
@@ -137,13 +137,13 @@ function Chat() {
         <PixelArtCard hover={false} random={true} size={200} tags={[(gen === "male") ? "human-male" : "human-female"]} />
         <h1 className="mb-12 text-xl mt-2">Hello, <span className='text-yellow-400 font-bold'>{name}</span>!</h1>
 
-        <button onClick={() => { setActiv({ one: true, two: false, three: false, four: false }); setSlide(!slide); setArr([]); setImg([]); setRecv([]); setPrice([])}} className={`h-[40px] w-[120px]  ${css.btn}`} style={{ backgroundImage: activ.one ? "var(--prim)" : "" }}>
+        <button onClick={() => { setActiv({ one: true, two: false, three: false, four: false }); setSlide(!slide); setArr([]); setImg([]); setRecv([]); setPrice([]) }} className={`h-[40px] w-[120px]  ${css.btn}`} style={{ backgroundImage: activ.one ? "var(--prim)" : "" }}>
           FAQ</button>
-        <button onClick={() => { setActiv({ one: false, two: true, three: false, four: false }); setSlide(!slide); setArr([]); setImg([]); setRecv([]); setPrice([])}} className={`h-[40px] w-[120px] ${css.btn}`} style={{ backgroundImage: activ.two ? "var(--prim)" : "" }}>
+        <button onClick={() => { setActiv({ one: false, two: true, three: false, four: false }); setSlide(!slide); setArr([]); setImg([]); setRecv([]); setPrice([]) }} className={`h-[40px] w-[120px] ${css.btn}`} style={{ backgroundImage: activ.two ? "var(--prim)" : "" }}>
           Price</button>
-        <button onClick={() => { setActiv({ one: false, two: false, three: true, four: false }); setSlide(!slide); setArr([]); setImg([]); setRecv([]); setPrice([])}} className={`h-[40px] w-[120px] ${css.btn}`} style={{ backgroundImage: activ.three ? "var(--prim)" : "" }}>
+        <button onClick={() => { setActiv({ one: false, two: false, three: true, four: false }); setSlide(!slide); setArr([]); setImg([]); setRecv([]); setPrice([]) }} className={`h-[40px] w-[120px] ${css.btn}`} style={{ backgroundImage: activ.three ? "var(--prim)" : "" }}>
           Analytics 1</button>
-        <button onClick={() => { setActiv({ one: false, two: false, three: false, four: true }); setSlide(!slide); setArr([]); setImg([]); setRecv([]); setPrice([])}} className={`h-[40px] w-[120px] ${css.btn}`} style={{ backgroundImage: activ.four ? "var(--prim)" : "" }}>
+        <button onClick={() => { setActiv({ one: false, two: false, three: false, four: true }); setSlide(!slide); setArr([]); setImg([]); setRecv([]); setPrice([]) }} className={`h-[40px] w-[120px] ${css.btn}`} style={{ backgroundImage: activ.four ? "var(--prim)" : "" }}>
           Analytics 2</button>
 
       </div>
@@ -155,19 +155,24 @@ function Chat() {
         {activ.three && (<div className={`${css.mssg2} max-sm:text-sm max-sm:min-w-[300px]`}><p>Hey there! 📈🔍 Ready to dive into crypto history?  </p><p>Just drop the name, and watch the magic unfold as we paint its entire journey on a sleek graph for you! 🚀📊</p></div>)}
         {activ.four && (<div className={`${css.mssg2} max-sm:text-sm max-sm:min-w-[300px]`}><p>Hi there! 🤝📊 Stuck picking a crypto? </p><p>No worries! Just type in the names of the two contenders, and we'll conjure up a comparison graph so you can see them go head-to-head. 📊🚀</p></div>)}
         {
-          (activ.one && (<iframe className='max-sm:mx-auto mr-5 w-[900px] h-[500px] max-lg:w-[700px] max-lg:h-[400px] max-md:w-[600px] max-md:h-[350px] max-sm:w-[320px] max-sm:h-[180px]' src="https://www.youtube.com/embed/S_A774avQUY?si=HQyzOXu9kE0_8Yqc" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>))
+          (activ.one && (
+            <>
+              <iframe className='max-sm:m-auto mr-5 w-[850px] h-[500px] max-lg:w-[700px] max-lg:h-[400px] max-md:w-[600px] max-md:h-[350px] max-sm:w-[320px] max-sm:h-[180px]' src="https://www.youtube.com/embed/S_A774avQUY?si=HQyzOXu9kE0_8Yqc" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+            </>
+          )
+          )
         }
 
         {/* Latest Price fetch */}
         {
           (activ.two && (arr.map((data, i) => {
-            j = (i*4);
+            j = (i * 4);
             return (
               <>
                 <div key={i} className={`${css.mssg1}`}>
                   <p>{data}</p>
                 </div>
-                {(((i * 4) >= (price.length+1))&& !load ) ? "" : (<div className={`${css.mssg2} max-sm:text-sm max-sm:min-w-[280px]`} id={i}>
+                {(((i * 4) >= (price.length + 1)) && !load) ? "" : (<div className={`${css.mssg2} max-sm:text-sm max-sm:min-w-[280px]`} id={i}>
                   <p className='text-yellow-500 text-xl'>{`For ${data}`}</p>
                   <p className='mb-2'>Currently the data prices are :</p>
                   <p>{`All time high :  $${price[j]}`}</p>
@@ -215,9 +220,12 @@ function Chat() {
         <form onSubmit={send} className={css.inp}>
           {load && (<h1 className='text-3xl text-white font-bold'>Loading....</h1>)}
 
-          {!load && activ.one && (<div className={`${css.inpu} text-red-500 flex justify-center items-center max-md:text-sm max-sm:text-xs`}>FAQ feature does not work in free deployment site. Check out other features</div>)}
+          {!load && activ.one && (<div className={`${css.inpu} text-red-500 max-sm:text-center flex flex-col justify-center items-center max-md:text-sm max-sm:text-xs`}><span>FAQ feature does not work in free deployment site. Check out other features!</span>
+            <span className='text-xs rounded-md py-[2px] text-teal-600 max-sm:text-[11px]'><a className='inline' href="https://github.com/Yash-Phatak/Crypto-Chatbot"><i className="fa-brands inline mr-1 fa-github fa-lg text-teal-700"></i>link of ML model</a></span></div>)
+          }
+
           {!load && activ.two && (<div style={{ "backgroundColor": "var(--dclight)" }} className='p-2 rounded-lg flex gap-4 max-sm:flex-col max-sm:text-sm max-sm:min-w-[200px]'><p className='inline text-white'>Choose a crypto: </p>
-            <select onChange={changeInput} value={input} style={{ "backgroundColor": "var(--dclight)"}} className='rounded-lg px-3 text-white border-none'>
+            <select onChange={changeInput} value={input} style={{ "backgroundColor": "var(--dclight)" }} className='rounded-lg px-3 text-white border-none'>
               <option>Select</option>
               <option>Bitcoin</option>
               <option>Ethereum</option>
@@ -238,8 +246,8 @@ function Chat() {
             </select>
           </div>)}
           {!load && activ.three && (<div style={{ "backgroundColor": "var(--dclight)" }} className='p-2 rounded-lg flex gap-4 max-sm:flex-col max-sm:text-sm max-sm:min-w-[200px]'><p className='inline text-white'>Select crypto to analyise: </p>
-            <select onChange={changeInput} value={input} style={{ "backgroundColor": "var(--dclight)"}} className='rounded-lg px-3 text-white border-none'>
-            <option>Select</option>
+            <select onChange={changeInput} value={input} style={{ "backgroundColor": "var(--dclight)" }} className='rounded-lg px-3 text-white border-none'>
+              <option>Select</option>
               <option>Bitcoin</option>
               <option>Ethereum</option>
               <option>Dogecoin</option>
@@ -259,8 +267,8 @@ function Chat() {
             </select>
           </div>)}
           {!load && activ.four && (<div style={{ "backgroundColor": "var(--dclight)" }} className='p-2 rounded-lg flex gap-4 max-sm:flex-col max-sm:text-sm max-sm:min-w-[200px]'><p className='inline text-white max-sm:hidden'>Choose two to analyise: </p>
-            <select onChange={(e)=>{setInput1(e.target.value); setInput(e.target.value+" "+input2)}} value={input1} style={{ "backgroundColor": "var(--dclight)"}} className='rounded-lg px-3 text-white border-none'>
-            <option>Select</option>
+            <select onChange={(e) => { setInput1(e.target.value); setInput(e.target.value + " " + input2) }} value={input1} style={{ "backgroundColor": "var(--dclight)" }} className='rounded-lg px-3 text-white border-none'>
+              <option>Select</option>
               <option>Bitcoin</option>
               <option>Ethereum</option>
               <option>Dogecoin</option>
@@ -278,8 +286,8 @@ function Chat() {
               <option>Uniswap</option>
               <option>Aave</option>
             </select>
-            <select onChange={(e)=>{setInput2(e.target.value); setInput(input1+" "+e.target.value)}} value={input2} style={{ "backgroundColor": "var(--dclight)"}} className='rounded-lg px-3 text-white border-none'>
-            <option>Select</option>
+            <select onChange={(e) => { setInput2(e.target.value); setInput(input1 + " " + e.target.value) }} value={input2} style={{ "backgroundColor": "var(--dclight)" }} className='rounded-lg px-3 text-white border-none'>
+              <option>Select</option>
               <option>Bitcoin</option>
               <option>Ethereum</option>
               <option>Dogecoin</option>

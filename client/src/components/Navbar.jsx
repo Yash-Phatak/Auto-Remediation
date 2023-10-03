@@ -20,7 +20,7 @@ function Navbar() {
         </div>
 
       <div className={`${drop ? "max-sm:hidden " : "flex flex-col gap-4 mt-2"}`}>
-        <HashLink smooth to="#vid" className='sm:mr-6 border-2 border-solid border-yellow-400 rounded-lg p-[6px]'>Demo Video</HashLink>
+        <HashLink smooth to="#vid" className='sm:mr-6 border-2 border-solid border-yellow-400 rounded-lg p-[6px] hover:bg-yellow-500/20'>Demo Video</HashLink>
         <HashLink smooth to="#feat" className='sm:mr-3 hover:text-yellow-500'>Features</HashLink>
         <HashLink smooth to="#dev" className='sm:ml-5 hover:text-yellow-500'>About Us</HashLink>
       </div>
