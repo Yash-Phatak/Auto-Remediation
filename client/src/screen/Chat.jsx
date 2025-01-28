@@ -7,8 +7,11 @@ const Chat = () => {
   const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(true);
-  const mssgEnd = useRef();
-  
+  const [ticketPopup,setTicketPopup] = useState(false);
+  const [ticketBox, setTicketBox] = useState(false);
+  const [ticketMessage, setTicketMessage] = useState("");
+
+  const mssgEnd = useRef( );
   const userData = {
     name: "John Smith",
     email: "john.smith@company.com",
@@ -24,8 +27,14 @@ const Chat = () => {
   ];
 
   useEffect(() => {
-    mssgEnd.current?.scrollIntoView({ behavior: "smooth" });
+    mssgEnd.current?.scrollIntoView({ behavior: "smooth" });  
   }, [messages]);
+
+  useEffect(() => {
+    if (ticketBox && messages.length > 0) {
+      setTicketMessage(messages[0].content); // Reset to initial content when ticket box is opened
+    }
+  }, [ticketBox, messages]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,6 +55,10 @@ const Chat = () => {
       });
       const data = await res.json();
       setMessages(prev => [...prev, { type: 'bot', content: data.answer }]);
+      // Showing the ticket popup after the first response
+      if (!ticketPopup) {
+        setTicketPopup(true);
+      }
     } catch (error) {
       setMessages(prev => [...prev, {
         type: 'bot',
@@ -55,6 +68,33 @@ const Chat = () => {
 
     setLoading(false);
     setInput("");
+  };
+
+  // const handleRaiseTicket = () => {
+  //   setMessages(prev => [...prev, { type: 'bot', content: "Your ticket has been raised. Our support team will contact you shortly." }]);
+  //   setTicketPopup(false);
+  // };
+  const handleRaiseTicket = async () => {
+    try {
+      const res = await fetch("http://127.0.0.1:5000/ticket", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({ text: ticketMessage }),
+      });
+      const data = await res.json();
+      console.log(data);
+      setTicketBox(false); // Close the popup after submitting the ticket
+      setMessages(prev => [...prev, { type: 'bot', content: "Your ticket has been raised. Our support team will contact you shortly." }]);
+    } catch (error) {
+      alert("There was an issue raising your ticket. Please try again later.");
+    }
+  };
+
+  const handleInputChange = (e) => {
+    setTicketMessage(e.target.value); // Update the ticketMessage state as the user types
   };
 
   return (
@@ -170,7 +210,54 @@ const Chat = () => {
           ))}
           <div ref={mssgEnd} />
         </div>
+        
+        {/* Ticket Popup */}
+        {messages.length > 1 &&  setTicketPopup && (
+                <div className="bg-blue-800/20 p-5 rounded-xl border border-blue-400/20 shadow-xl">
+                  <p className="text-blue-100">Would you like to raise a support ticket?</p>
+                  <button 
+                    onClick={() => {
+                      setTicketPopup(true);
+                      setTicketBox(true);
+                      // setMessages(prev => [...prev, { type: 'bot', content: "Your ticket has been raised. Our team will get back to you shortly." }]);
+                    }} 
+                    className="mt-3 bg-gradient-to-bl from-blue-500 to-blue-700 text-white px-6 py-3 rounded-xl hover:from-blue-600 hover:to-blue-800 transition-all"
+                  >
+                    Raise Ticket
+                  </button>
+                </div>
+              )}
+        {/* Ticket Box */}
+        {ticketBox && (
+        <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
+          <div className="bg-white p-6 rounded-xl w-96 shadow-lg">
+            <h3 className="text-xl font-semibold mb-4">Raise a Support Ticket</h3>
+            <textarea
+              className="w-full p-3 border rounded-xl mb-4"
+              value={ticketMessage} // Bind the textarea value to ticketMessage
+              onChange={handleInputChange}
+              rows="4"
+            />
+            <div className="flex justify-end space-x-4">
+              <button
+                onClick={() => setTicketBox(false)}
+                className="p-2 bg-gray-500 text-white rounded-xl"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={
+                  handleRaiseTicket
 
+                }
+                className="p-2 bg-blue-600 text-white rounded-xl"
+              >
+                Submit Ticket
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
         {/* Input Area */}
         <div className="border-t border-blue-400/10 p-5 backdrop-blur-xl bg-blue-950/30">
           <form onSubmit={handleSubmit} className="flex space-x-4">
