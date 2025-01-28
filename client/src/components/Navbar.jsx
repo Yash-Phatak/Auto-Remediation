@@ -2,7 +2,7 @@ import React from 'react'
 import nc from '../astylus/Nav.module.css'
 import { HashLink } from 'react-router-hash-link';
 import { useState } from 'react';
-import icon from '../img/icon.png'
+import icon from '../img/ION-Logo_NZR-560x273-rgb.webp'
 
 function Navbar() {
   const [drop, setDrop] = useState(true);
@@ -10,8 +10,8 @@ function Navbar() {
     <div className={`py-4 ${nc.navbar} px-36 max-md:px-16 ${drop ? "" : "flex flex-col flex-1"}`}>
       <div className='max-sm:mx-auto flex flex-1 justify-between items-center relative'>
         <div>
-          <img src={icon} alt="icon" className='h-[40px] w-[40px] mr-2 inline'></img>
-          <HashLink className='tracking-wider' smooth to="#top">Crypton</HashLink>
+          <img src={icon} alt="icon" className='h-[40x] w-[80px] mr-2 inline'></img>
+          <HashLink className='tracking-wider' smooth to="#top">TradAir</HashLink>
         </div>
         
       </div>

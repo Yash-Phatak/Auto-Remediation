@@ -1,317 +1,203 @@
-import React, { useEffect, useRef, useState } from 'react'
-import css from '../astylus/chat.module.css'
-import { PixelArtCard } from 'react-pixelart-face-card'
-import icon from '../img/icon.png'
+import React, { useEffect, useRef, useState } from 'react';
+import { Settings, Search, Clock, User, MessageSquare, Send, Menu } from 'lucide-react';
 
-function Chat() {
-  //for input store
+const Chat = () => {
   const [input, setInput] = useState("");
-  const [input1, setInput1] = useState("");
-  const [input2, setInput2] = useState("");
-  //for input arr
-  const [arr, setArr] = useState([]);
-  //for faq
-  const [recv, setRecv] = useState([]);
-  //for realtime
-  const [price, setPrice] = useState([]);
-  //for image fetch 1
-  const [img, setImg] = useState([]);
-  const [load, setLoad] = useState(false);
-  const [slide, setSlide] = useState(false);
-  const [activ, setActiv] = useState({ one: true, two: false, three: false, four: false })
-  const mssgend = useRef();  //for auto scroll
-  const name = localStorage.getItem('name');
-  const gen = localStorage.getItem('gen');
-  var j = 0;
+  const [messages, setMessages] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [isMenuOpen, setIsMenuOpen] = useState(true);
+  const mssgEnd = useRef();
+  
+  const userData = {
+    name: "John Smith",
+    email: "john.smith@company.com",
+    role: "Premium Client",
+    productVersion: "v3.2.1",
+    subscriptionStatus: "Active"
+  };
 
-  useEffect(() => {               //to automatically scroll down after an input is sent
-    mssgend.current?.scrollIntoView({ behavior: "smooth" })
-  }, [input])
+  const previousChats = [
+    { id: 1, title: "API Integration Issue", date: "2025-01-27", status: "Resolved" },
+    { id: 2, title: "Payment Gateway Setup", date: "2025-01-25", status: "In Progress" },
+    { id: 3, title: "Dashboard Access", date: "2025-01-22", status: "Resolved" }
+  ];
 
-  function changeInput(e) {
-    setInput(e.target.value);
-  }
+  useEffect(() => {
+    mssgEnd.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
-  const send = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (input.trim() !== "") {
-      // FAQ
-      if (activ.one) {
-        console.log(input);
-        setArr([...arr, input])
-        setLoad(true)
-        const res = await fetch("https://crypton-backend.onrender.com/faq", {
-          method: "POST",
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ message: input })
-        });
-        console.log(res);
-        var temp = await res.json();
-        console.log(temp);
-        setRecv([...recv, temp.answer]);
-        setLoad(false);
-      }
-      //Price fetch
-      else if (activ.two) {
-        setArr([...arr, input])
-        console.log(input);
-        setLoad(true)
-        const res1 = await fetch("https://crypton-backend.onrender.com/realtime", {
-          method: "POST",
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ message: input })
-        });
-        var temp1 = await res1.json();
-        setPrice([...price, temp1.ath.toFixed(2), temp1.atl.toFixed(2), temp1.high24h.toFixed(2), temp1.low24h.toFixed(2)]);
-        setLoad(false);
-      }
-      //Analytics 1
-      else if (activ.three) {
-        setArr([...arr, input])
-        setLoad(true);
-        fetch('https://crypton-backend.onrender.com/plot', {
-          method: 'POST', // Use the POST method
-          // You can add headers if needed
-          headers: {
-            'Content-Type': 'application/json', // Adjust content type as needed
-            // Add other headers if required
-          },
-          // You can pass any data as the request body
-          body: JSON.stringify({ message: input }) // Replace with actual data
-        })
-          .then(response => response.blob())
-          .then(blob => {
-            const imageUrl = URL.createObjectURL(blob);
-            setImg([...img, imageUrl]);
-          })
-          .catch(error => {
-            console.error('Error fetching image:', error);
-          });
-        setLoad(false);
-      }
-      //Analytics 2
-      else if (activ.four) {
+    if (input.trim() === "") return;
 
-        setArr([...arr, input])
-        console.log(arr);
-        setLoad(true);
-        fetch('https://crypton-backend.onrender.com/comparison', {
-          method: 'POST', // Use the POST method
-          // You can add headers if needed
-          headers: {
-            'Content-Type': 'application/json', // Adjust content type as needed
-            // Add other headers if required
-          },
-          // You can pass any data as the request body
-          body: JSON.stringify({ message: input }) // Replace with actual data
-        })
-          .then(response => response.blob())
-          .then(blob => {
-            const imageUrl = URL.createObjectURL(blob);
-            setImg([...img, imageUrl]);
-          })
-          .catch(error => {
-            console.error('Error fetching image:', error);
-          });
-        setLoad(false);
-      }
+    const newMessage = { type: 'user', content: input };
+    setMessages(prev => [...prev, newMessage]);
+    setLoading(true);
 
-
-      setInput("");
+    try {
+      const res = await fetch("http://127.0.0.1:5000/faq", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({ message: input }),
+      });
+      const data = await res.json();
+      setMessages(prev => [...prev, { type: 'bot', content: data.answer }]);
+    } catch (error) {
+      setMessages(prev => [...prev, {
+        type: 'bot',
+        content: "I apologize, but I'm having trouble connecting to the server. Please try again or contact support if the issue persists."
+      }]);
     }
 
-  }
+    setLoading(false);
+    setInput("");
+  };
 
   return (
-    <div className={css.bdy}>
-      <button onClick={() => setSlide(!slide)}><i className={`fa-solid  ${slide ? "" : "rotate-180"} transition ease-out delay-300 fa-circle-arrow-right fa-2xl ${css.slide}`} style={{ color: "#f7e22b" }}></i></button>
-      <div className={css.top}>
-        <img src={icon} alt="icon" className='h-[40px] w-[40px] inline'></img><span className='ml-2'>Crypton</span>
+    <div className="flex h-screen bg-gradient-to-bl from-blue-950 via-blue-900 to-blue-950 to-50%">
+      {/* Mobile Menu Toggle */}
+      <button 
+        className="lg:hidden fixed top-4 left-4 z-50 p-3 bg-blue-600/80 backdrop-blur-lg rounded-xl shadow-lg text-white hover:bg-blue-600 transition-all"
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+      >
+        <Menu size={24} />
+      </button>
+
+      {/* Left Sidebar */}
+      <div className={`${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 transition-transform duration-300 fixed lg:relative w-80 h-full bg-blue-950/40 backdrop-blur-2xl border-r border-blue-400/10 flex flex-col z-40 shadow-2xl`}>
+        {/* User Profile Section */}
+        <div className="p-6 border-b border-blue-400/10">
+          <div className="flex items-center space-x-4">
+            <div className="bg-gradient-to-bl from-blue-400 to-blue-600 p-4 rounded-2xl shadow-lg ring-2 ring-blue-500/20">
+              <User className="text-white" size={24} />
+            </div>
+            <div>
+              <h2 className="font-semibold text-white text-lg">{userData.name}</h2>
+              <p className="text-sm text-blue-200/80">{userData.role}</p>
+            </div>
+          </div>
+          <div className="mt-6 space-y-2 text-sm bg-blue-900/20 p-5 rounded-2xl ring-1 ring-blue-400/10 backdrop-blur-md">
+            <p className="text-blue-200/80">Version: {userData.productVersion}</p>
+            <p className="text-blue-200/80">Status: {userData.subscriptionStatus}</p>
+          </div>
+        </div>
+
+        {/* Search Previous Chats */}
+        <div className="p-4">
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Search previous chats..."
+              className="w-full pl-11 pr-4 py-3.5 bg-blue-900/20 border-blue-400/10 border rounded-xl text-blue-100 placeholder-blue-300/50 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <Search className="absolute left-3.5 top-4 text-blue-300/50" size={18} />
+          </div>
+        </div>
+
+        {/* Previous Chats List */}
+        <div className="flex-1 overflow-y-auto space-y-3 p-4">
+          {previousChats.map(chat => (
+            <div 
+              key={chat.id} 
+              className="p-4 rounded-2xl hover:bg-blue-800/20 cursor-pointer transition-all group border border-blue-400/10 hover:border-blue-400/20 backdrop-blur-sm hover:backdrop-blur-lg"
+            >
+              <div className="flex items-center justify-between">
+                <div className="space-y-1.5">
+                  <h3 className="font-medium text-blue-100 group-hover:text-white transition-colors">
+                    {chat.title}
+                  </h3>
+                  <p className="text-sm text-blue-300/70 flex items-center gap-2">
+                    <Clock size={14} />
+                    {chat.date}
+                  </p>
+                </div>
+                <span className={`px-3.5 py-1.5 rounded-xl text-xs ${
+                  chat.status === 'Resolved' 
+                    ? 'bg-green-900/30 text-green-200 border border-green-400/20' 
+                    : 'bg-yellow-900/30 text-yellow-200 border border-yellow-400/20'
+                }`}>
+                  {chat.status}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
-      <div className={`${slide ? "max-lg:translate-x-[-300vw]" : ""} ${css.sidebar} transition ease-out delay-300`}>
-        <PixelArtCard hover={false} random={true} size={200} tags={[(gen === "male") ? "human-male" : "human-female"]} />
-        <h1 className="mb-12 text-xl mt-2">Hello, <span className='text-yellow-400 font-bold'>{name}</span>!</h1>
+      {/* Main Chat Area */}
+      <div className="flex-1 flex flex-col bg-gradient-to-b from-blue-950/50 to-blue-900/30 backdrop-blur-lg">
+        {/* Chat Header */}
+        <div className="backdrop-blur-xl bg-blue-950/30 border-b border-blue-400/10 p-5 flex items-center justify-between">
+          <div className="flex items-center space-x-4">
+            <div className="p-3 bg-blue-900/30 rounded-xl border border-blue-400/10">
+              <MessageSquare className="text-blue-400" size={24} />
+            </div>
+            <h1 className="text-xl font-semibold text-white">Technical Support</h1>
+          </div>
+          <button className="p-3 hover:bg-blue-800/30 rounded-xl transition-colors border border-transparent hover:border-blue-400/10">
+            <Settings className="text-blue-400" size={20} />
+          </button>
+        </div>
 
-        <button onClick={() => { setActiv({ one: true, two: false, three: false, four: false }); setSlide(!slide); setArr([]); setImg([]); setRecv([]); setPrice([]) }} className={`h-[40px] w-[120px]  ${css.btn}`} style={{ backgroundImage: activ.one ? "var(--prim)" : "" }}>
-          FAQ</button>
-        <button onClick={() => { setActiv({ one: false, two: true, three: false, four: false }); setSlide(!slide); setArr([]); setImg([]); setRecv([]); setPrice([]) }} className={`h-[40px] w-[120px] ${css.btn}`} style={{ backgroundImage: activ.two ? "var(--prim)" : "" }}>
-          Price</button>
-        <button onClick={() => { setActiv({ one: false, two: false, three: true, four: false }); setSlide(!slide); setArr([]); setImg([]); setRecv([]); setPrice([]) }} className={`h-[40px] w-[120px] ${css.btn}`} style={{ backgroundImage: activ.three ? "var(--prim)" : "" }}>
-          Analytics 1</button>
-        <button onClick={() => { setActiv({ one: false, two: false, three: false, four: true }); setSlide(!slide); setArr([]); setImg([]); setRecv([]); setPrice([]) }} className={`h-[40px] w-[120px] ${css.btn}`} style={{ backgroundImage: activ.four ? "var(--prim)" : "" }}>
-          Analytics 2</button>
+        {/* Messages Area */}
+        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+          <div className="bg-gradient-to-r from-blue-600/20 to-blue-500/20 p-6 rounded-2xl backdrop-blur-xl border border-blue-400/10 shadow-lg">
+            <p className="text-blue-100">
+              Welcome to our Technical Support. I'm here to help you resolve any issues with our product. 
+              Please describe your concern, and I'll guide you through the solution.
+            </p>
+          </div>
 
-      </div>
+          {messages.map((msg, index) => (
+            <div
+              key={index}
+              className={`flex ${msg.type === 'user' ? 'justify-end' : 'justify-start'}`}
+            >
+              <div className={`p-6 rounded-2xl max-w-3xl backdrop-blur-xl shadow-lg ${
+                msg.type === 'user'
+                  ? 'bg-gradient-to-bl from-blue-400 to-blue-600 text-white'
+                  : 'bg-gradient-to-bl from-blue-950/50 to-blue-900/50 text-blue-100 border border-blue-400/10'
+              }`}>
+                <p>{msg.content}</p>
+              </div>
+            </div>
+          ))}
+          <div ref={mssgEnd} />
+        </div>
 
-      <div className={css.chatArea}  >
-        {/* FAQ */}
-        {activ.one && (<div className={`${css.mssg2} max-sm:text-sm max-sm:min-w-[280px]`}><p>Hello there! 👋🪙 I am Crypton, Your go-to guide for all things cryptocurrency! 🌌🔍 </p><p> How can I assist you today? Feel free to ask away! 🚀💬</p></div>)}
-        {activ.two && (<div className={`${css.mssg2} max-sm:text-sm max-sm:min-w-[300px]`}><p>Hello there! 📊🌐 Wondering about your crypto's current state?</p><p>Just type its name, and we'll show you the latest real time data of the same!. Stay informed effortlessly! 💹🚀</p></div>)}
-        {activ.three && (<div className={`${css.mssg2} max-sm:text-sm max-sm:min-w-[300px]`}><p>Hey there! 📈🔍 Ready to dive into crypto history?  </p><p>Just drop the name, and watch the magic unfold as we paint its entire journey on a sleek graph for you! 🚀📊</p></div>)}
-        {activ.four && (<div className={`${css.mssg2} max-sm:text-sm max-sm:min-w-[300px]`}><p>Hi there! 🤝📊 Stuck picking a crypto? </p><p>No worries! Just type in the names of the two contenders, and we'll conjure up a comparison graph so you can see them go head-to-head. 📊🚀</p></div>)}
-        {
-          (activ.one && (
-            <>
-              <iframe className='max-sm:m-auto mr-5 w-[850px] h-[500px] max-lg:w-[700px] max-lg:h-[400px] max-md:w-[600px] max-md:h-[350px] max-sm:w-[320px] max-sm:h-[180px]' src="https://www.youtube.com/embed/S_A774avQUY?si=HQyzOXu9kE0_8Yqc" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
-            </>
-          )
-          )
-        }
-
-        {/* Latest Price fetch */}
-        {
-          (activ.two && (arr.map((data, i) => {
-            j = (i * 4);
-            return (
-              <>
-                <div key={i} className={`${css.mssg1}`}>
-                  <p>{data}</p>
-                </div>
-                {(((i * 4) >= (price.length + 1)) && !load) ? "" : (<div className={`${css.mssg2} max-sm:text-sm max-sm:min-w-[280px]`} id={i}>
-                  <p className='text-yellow-500 text-xl'>{`For ${data}`}</p>
-                  <p className='mb-2'>Currently the data prices are :</p>
-                  <p>{`All time high :  $${price[j]}`}</p>
-                  <p>{`All time low :  $${price[j + 1]}`}</p>
-                  <p>{`24h high :  $${price[j + 2]}`}</p>
-                  <p>{`24h low :  $${price[j + 3]}`}</p>
-                </div>)}
-              </>
-            )
-          })))
-        }
-        {/* Analytics type 1 */}
-        {
-          (activ.three && (arr.map((data, i) => {
-            return (
-              <>
-                <div key={i} className={`${css.mssg1}`}>
-                  <p>{data}</p>
-                </div>
-                {(i >= img.length) ? "" : (<div className='mx-[8px] my-[18px] p-2 bg-black text-white rounded-lg self-start'><img src={img[i]} alt='plot here' className='max-h-[500px] max-w-[600px] max-sm:max-w-[340px]' /></div>)}
-              </>
-            )
-          })))
-        }
-        {/* Analytics 2 compare */}
-        {
-          (activ.four && (arr.map((data, i) => {
-            return (
-              <>
-                <div key={i} className={`${css.mssg1}`}>
-                  <p>{data}</p>
-                </div>
-                {(i >= img.length) ? "" : (<div className='mx-[8px] my-[18px] p-2 bg-black text-white rounded-lg self-start'><img src={img[i]} alt='plot here' className='max-h-[500px] max-w-[600px] max-sm:max-w-[340px]' /></div>)}
-              </>
-            )
-          })))
-        }
-
-
-        {/* for autoscroll */}
-        <div ref={mssgend} className='absolute bottom-0 right-0'></div>
-      </div>
-
-      <div className={css.foot}>
-        <form onSubmit={send} className={css.inp}>
-          {load && (<h1 className='text-3xl text-white font-bold'>Loading....</h1>)}
-
-          {!load && activ.one && (<div className={`${css.inpu} text-red-500 max-sm:text-center flex flex-col justify-center items-center max-md:text-sm max-sm:text-xs`}><span>FAQ feature does not work in free deployment site. Check out other features!</span>
-            <span className='text-xs rounded-md py-[2px] text-teal-600 max-sm:text-[11px]'><a className='inline' href="https://github.com/Yash-Phatak/Crypto-Chatbot"><i className="fa-brands inline mr-1 fa-github fa-lg text-teal-700"></i>link of ML model</a></span></div>)
-          }
-
-          {!load && activ.two && (<div style={{ "backgroundColor": "var(--dclight)" }} className='p-2 rounded-lg flex gap-4 max-sm:flex-col max-sm:text-sm max-sm:min-w-[200px]'><p className='inline text-white'>Choose a crypto: </p>
-            <select onChange={changeInput} value={input} style={{ "backgroundColor": "var(--dclight)" }} className='rounded-lg px-3 text-white border-none'>
-              <option>Select</option>
-              <option>Bitcoin</option>
-              <option>Ethereum</option>
-              <option>Dogecoin</option>
-              <option>Litecoin</option>
-              <option>Tron</option>
-              <option>XRP</option>
-              <option>Monero</option>
-              <option>Stellar</option>
-              <option>Binance coin</option>
-              <option>Chainlink</option>
-              <option>Cardano</option>
-              <option>Cosmos</option>
-              <option>Solana</option>
-              <option>Polkadot</option>
-              <option>Uniswap</option>
-              <option>Aave</option>
-            </select>
-          </div>)}
-          {!load && activ.three && (<div style={{ "backgroundColor": "var(--dclight)" }} className='p-2 rounded-lg flex gap-4 max-sm:flex-col max-sm:text-sm max-sm:min-w-[200px]'><p className='inline text-white'>Select crypto to analyise: </p>
-            <select onChange={changeInput} value={input} style={{ "backgroundColor": "var(--dclight)" }} className='rounded-lg px-3 text-white border-none'>
-              <option>Select</option>
-              <option>Bitcoin</option>
-              <option>Ethereum</option>
-              <option>Dogecoin</option>
-              <option>Litecoin</option>
-              <option>Tron</option>
-              <option>XRP</option>
-              <option>Monero</option>
-              <option>Stellar</option>
-              <option>Binance coin</option>
-              <option>Chainlink</option>
-              <option>Cardano</option>
-              <option>Cosmos</option>
-              <option>Solana</option>
-              <option>Polkadot</option>
-              <option>Uniswap</option>
-              <option>Aave</option>
-            </select>
-          </div>)}
-          {!load && activ.four && (<div style={{ "backgroundColor": "var(--dclight)" }} className='p-2 rounded-lg flex gap-4 max-sm:flex-col max-sm:text-sm max-sm:min-w-[200px]'><p className='inline text-white max-sm:hidden'>Choose two to analyise: </p>
-            <select onChange={(e) => { setInput1(e.target.value); setInput(e.target.value + " " + input2) }} value={input1} style={{ "backgroundColor": "var(--dclight)" }} className='rounded-lg px-3 text-white border-none'>
-              <option>Select</option>
-              <option>Bitcoin</option>
-              <option>Ethereum</option>
-              <option>Dogecoin</option>
-              <option>Litecoin</option>
-              <option>Tron</option>
-              <option>XRP</option>
-              <option>Monero</option>
-              <option>Stellar</option>
-              <option>Binance coin</option>
-              <option>Chainlink</option>
-              <option>Cardano</option>
-              <option>Cosmos</option>
-              <option>Solana</option>
-              <option>Polkadot</option>
-              <option>Uniswap</option>
-              <option>Aave</option>
-            </select>
-            <select onChange={(e) => { setInput2(e.target.value); setInput(input1 + " " + e.target.value) }} value={input2} style={{ "backgroundColor": "var(--dclight)" }} className='rounded-lg px-3 text-white border-none'>
-              <option>Select</option>
-              <option>Bitcoin</option>
-              <option>Ethereum</option>
-              <option>Dogecoin</option>
-              <option>Litecoin</option>
-              <option>Tron</option>
-              <option>XRP</option>
-              <option>Monero</option>
-              <option>Stellar</option>
-              <option>Binance coin</option>
-              <option>Chainlink</option>
-              <option>Cardano</option>
-              <option>Cosmos</option>
-              <option>Solana</option>
-              <option>Polkadot</option>
-              <option>Uniswap</option>
-              <option>Aave</option>
-            </select>
-          </div>)}
-
-          {!activ.one && (<button className={`h-[40px] w-[130px] ${css.btn}`} style={{ backgroundImage: "var(--prim)" }} type='submit'> <i className="fa-solid fa-paper-plane m-2"></i></button>)}
-        </form>
+        {/* Input Area */}
+        <div className="border-t border-blue-400/10 p-5 backdrop-blur-xl bg-blue-950/30">
+          <form onSubmit={handleSubmit} className="flex space-x-4">
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Type your message here..."
+              className="flex-1 bg-blue-900/20 border border-blue-400/10 rounded-xl px-5 py-3.5 text-blue-100 placeholder-blue-300/50 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all"
+              disabled={loading}
+            />
+            <button
+              type="submit"
+              disabled={loading}
+              className="bg-gradient-to-bl from-blue-400 to-blue-600 text-white px-6 py-3.5 rounded-xl hover:from-blue-500 hover:to-blue-700 disabled:from-blue-800 disabled:to-blue-800 disabled:text-blue-200/50 transition-all flex items-center gap-2 shadow-lg"
+            >
+              {loading ? "Sending..." : (
+                <>
+                  Send <Send size={18} />
+                </>
+              )}
+            </button>
+          </form>
+        </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Chat
+export default Chat;
